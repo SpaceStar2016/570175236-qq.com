@@ -10,6 +10,8 @@
 #import "DashBoardCViewItem.h"
 #import "DashBoardCModel.h"
 #import "SpaceByteConvert.h"
+#import "SWSTAnswerButton.h"
+#import "NNButton.h"
 @interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate>
 @property (weak) IBOutlet NSTextField *numTextField;
 @property(nonatomic,strong)NSMutableArray * cellData;
@@ -19,7 +21,7 @@
 @property(nonatomic,strong)NSCollectionView* collectionView;
 @property (weak) IBOutlet NSButton *decimaButton;
 
-@property (weak) IBOutlet NSButton *binaryButton;
+@property (weak) IBOutlet NNButton *binaryButton;
 
 @property (weak) IBOutlet NSButton *hexButton;
 
@@ -40,6 +42,9 @@
     self.bigSize = CGSizeMake(200, 100);
     self.isExtend = NO;
     
+    [self.binaryButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    [self.binaryButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
+    
     self.sbCollectionView.dataSource = self;
     self.sbCollectionView.delegate = self;
     [self.sbCollectionView registerClass:[DashBoardCViewItem class] forItemWithIdentifier:@"DashBoardCViewItem"];
@@ -54,7 +59,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:NSControlTextDidChangeNotification object:self.numTextField];
     self.numTextField.stringValue = @"2314256789";
     
-//    [self genData];
+    
     [self.sbCollectionView reloadData];
     
 }
@@ -119,7 +124,8 @@
     
     
 }
-- (IBAction)binaryCli:(id)sender {
+- (IBAction)binaryCli:(NNButton *)sender {
+    sender.selected = !sender.selected;
     NSString * binaryStr = [SpaceByteConvert binaryWithHexadecimal:self.numTextField.stringValue];
     [self genDataWithText:binaryStr];
     

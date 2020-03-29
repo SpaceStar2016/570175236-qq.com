@@ -24,6 +24,11 @@
 		FCBF7AC124278BDF0013FCF6 /* DashBoardCInnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AC024278BDF0013FCF6 /* DashBoardCInnerView.m */; };
 		FCBF7AC42427917D0013FCF6 /* DashBoardCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AC32427917D0013FCF6 /* DashBoardCModel.m */; };
 		FCBF7AC824307A7B0013FCF6 /* DashBoardSubCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AC724307A7B0013FCF6 /* DashBoardSubCModel.m */; };
+		FCBF7ACD2430DC3E0013FCF6 /* SWSTAnswerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7ACC2430DC3E0013FCF6 /* SWSTAnswerButton.m */; };
+		FCBF7AD02430DD6A0013FCF6 /* NSColor+SWExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7ACF2430DD6A0013FCF6 /* NSColor+SWExtension.m */; };
+		FCBF7AD82430E6640013FCF6 /* NSImage+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AD42430E6640013FCF6 /* NSImage+Ext.m */; };
+		FCBF7AD92430E6640013FCF6 /* NNButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AD62430E6640013FCF6 /* NNButton.m */; };
+		FCBF7ADA2430E6640013FCF6 /* NSColor+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AD72430E6640013FCF6 /* NSColor+Ext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +65,16 @@
 		FCBF7AC32427917D0013FCF6 /* DashBoardCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardCModel.m; sourceTree = "<group>"; };
 		FCBF7AC624307A7B0013FCF6 /* DashBoardSubCModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardSubCModel.h; sourceTree = "<group>"; };
 		FCBF7AC724307A7B0013FCF6 /* DashBoardSubCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubCModel.m; sourceTree = "<group>"; };
+		FCBF7ACB2430DC3E0013FCF6 /* SWSTAnswerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSTAnswerButton.h; sourceTree = "<group>"; };
+		FCBF7ACC2430DC3E0013FCF6 /* SWSTAnswerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSTAnswerButton.m; sourceTree = "<group>"; };
+		FCBF7ACE2430DD6A0013FCF6 /* NSColor+SWExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+SWExtension.h"; sourceTree = "<group>"; };
+		FCBF7ACF2430DD6A0013FCF6 /* NSColor+SWExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+SWExtension.m"; sourceTree = "<group>"; };
+		FCBF7AD22430E6640013FCF6 /* NNButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNButton.h; sourceTree = "<group>"; };
+		FCBF7AD32430E6640013FCF6 /* NSImage+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Ext.h"; sourceTree = "<group>"; };
+		FCBF7AD42430E6640013FCF6 /* NSImage+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Ext.m"; sourceTree = "<group>"; };
+		FCBF7AD52430E6640013FCF6 /* NSColor+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Ext.h"; sourceTree = "<group>"; };
+		FCBF7AD62430E6640013FCF6 /* NNButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNButton.m; sourceTree = "<group>"; };
+		FCBF7AD72430E6640013FCF6 /* NSColor+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Ext.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +107,7 @@
 		FCBF7A8A242710B40013FCF6 /* 进制工具 */ = {
 			isa = PBXGroup;
 			children = (
+				FCBF7AC92430DC110013FCF6 /* ThirdPark */,
 				FCBF7ABA24271D400013FCF6 /* Global */,
 				FCBF7AB024271C460013FCF6 /* Category */,
 				FCBF7A9F242710D60013FCF6 /* Class */,
@@ -176,6 +192,39 @@
 			path = Global;
 			sourceTree = "<group>";
 		};
+		FCBF7AC92430DC110013FCF6 /* ThirdPark */ = {
+			isa = PBXGroup;
+			children = (
+				FCBF7AD12430E6540013FCF6 /* NNButton */,
+				FCBF7ACA2430DC230013FCF6 /* SWSTAnswerButton */,
+			);
+			path = ThirdPark;
+			sourceTree = "<group>";
+		};
+		FCBF7ACA2430DC230013FCF6 /* SWSTAnswerButton */ = {
+			isa = PBXGroup;
+			children = (
+				FCBF7ACE2430DD6A0013FCF6 /* NSColor+SWExtension.h */,
+				FCBF7ACF2430DD6A0013FCF6 /* NSColor+SWExtension.m */,
+				FCBF7ACB2430DC3E0013FCF6 /* SWSTAnswerButton.h */,
+				FCBF7ACC2430DC3E0013FCF6 /* SWSTAnswerButton.m */,
+			);
+			path = SWSTAnswerButton;
+			sourceTree = "<group>";
+		};
+		FCBF7AD12430E6540013FCF6 /* NNButton */ = {
+			isa = PBXGroup;
+			children = (
+				FCBF7AD22430E6640013FCF6 /* NNButton.h */,
+				FCBF7AD62430E6640013FCF6 /* NNButton.m */,
+				FCBF7AD52430E6640013FCF6 /* NSColor+Ext.h */,
+				FCBF7AD72430E6640013FCF6 /* NSColor+Ext.m */,
+				FCBF7AD32430E6640013FCF6 /* NSImage+Ext.h */,
+				FCBF7AD42430E6640013FCF6 /* NSImage+Ext.m */,
+			);
+			path = NNButton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,6 +296,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCBF7AD92430E6640013FCF6 /* NNButton.m in Sources */,
+				FCBF7AD02430DD6A0013FCF6 /* NSColor+SWExtension.m in Sources */,
 				FCBF7AB924271C460013FCF6 /* NSView+Frame.m in Sources */,
 				FCBF7ABE24271E220013FCF6 /* DB_Const.m in Sources */,
 				FCBF7AA5242711070013FCF6 /* DashBoardVC.m in Sources */,
@@ -254,11 +305,14 @@
 				FCBF7A98242710B50013FCF6 /* main.m in Sources */,
 				FCBF7AC824307A7B0013FCF6 /* DashBoardSubCModel.m in Sources */,
 				FCBF7AA92427115A0013FCF6 /* SpaceByteConvert.m in Sources */,
+				FCBF7AD82430E6640013FCF6 /* NSImage+Ext.m in Sources */,
 				8ADE856E242A24720058AEA7 /* DashBoardSubCItem.m in Sources */,
+				FCBF7ACD2430DC3E0013FCF6 /* SWSTAnswerButton.m in Sources */,
 				FCBF7A8D242710B40013FCF6 /* AppDelegate.m in Sources */,
 				FCBF7AB824271C460013FCF6 /* NSColor+Hex.m in Sources */,
 				FCBF7AC124278BDF0013FCF6 /* DashBoardCInnerView.m in Sources */,
 				FCBF7AC42427917D0013FCF6 /* DashBoardCModel.m in Sources */,
+				FCBF7ADA2430E6640013FCF6 /* NSColor+Ext.m in Sources */,
 				FCBF7AAD24271AE80013FCF6 /* DashBoardCViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -765,7 +765,7 @@
                                             <action selector="decimaCli:" target="XfG-lQ-9wD" id="e0c-vE-2za"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a6X-Hv-RU8">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a6X-Hv-RU8" customClass="NNButton">
                                         <rect key="frame" x="10" y="231" width="80" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="9Zl-ji-b1A"/>
@@ -795,21 +795,14 @@
                                         <rect key="frame" x="10" y="77" width="80" height="80"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pch-b6-eWx">
-                                                <rect key="frame" x="-7" y="47" width="94" height="32"/>
-                                                <buttonCell key="cell" type="push" title="分割数据" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lSr-RA-lcv">
+                                                <rect key="frame" x="7" y="47" width="67" height="32"/>
+                                                <buttonCell key="cell" type="push" title="分割" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lSr-RA-lcv">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
-                                                <connections>
-                                                    <action selector="serpaCli:" target="XfG-lQ-9wD" id="BCu-Bj-ndh"/>
-                                                </connections>
                                             </button>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hae-Cy-Yzd">
-                                                <rect key="frame" x="3" y="23" width="75" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="CT9-SC-ow3"/>
-                                                    <constraint firstAttribute="width" constant="75" id="yGV-kX-sdT"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="20" width="80" height="21"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="输入分割位数" drawsBackground="YES" id="4M8-df-hjv">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -820,10 +813,15 @@
                                         <constraints>
                                             <constraint firstItem="Pch-b6-eWx" firstAttribute="centerX" secondItem="9d6-If-Ke3" secondAttribute="centerX" id="0ef-aN-boq"/>
                                             <constraint firstItem="hae-Cy-Yzd" firstAttribute="centerX" secondItem="9d6-If-Ke3" secondAttribute="centerX" id="DiT-hR-SBw"/>
+                                            <constraint firstAttribute="bottom" secondItem="hae-Cy-Yzd" secondAttribute="bottom" constant="20" id="IIZ-bx-1ds"/>
                                             <constraint firstAttribute="height" constant="80" id="KAo-TY-IAJ"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pch-b6-eWx" secondAttribute="trailing" id="VhL-cd-LEZ"/>
                                             <constraint firstAttribute="width" constant="80" id="feo-R0-nEn"/>
-                                            <constraint firstItem="hae-Cy-Yzd" firstAttribute="top" secondItem="Pch-b6-eWx" secondAttribute="bottom" constant="10" id="hhq-da-aTg"/>
+                                            <constraint firstItem="hae-Cy-Yzd" firstAttribute="leading" secondItem="9d6-If-Ke3" secondAttribute="leading" id="kV2-9z-F4Q"/>
                                             <constraint firstItem="Pch-b6-eWx" firstAttribute="top" secondItem="9d6-If-Ke3" secondAttribute="top" constant="5" id="pjv-7H-JFM"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hae-Cy-Yzd" secondAttribute="trailing" id="rbR-4o-JmR"/>
+                                            <constraint firstItem="hae-Cy-Yzd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9d6-If-Ke3" secondAttribute="leading" id="vvm-wD-lH4"/>
+                                            <constraint firstItem="Pch-b6-eWx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9d6-If-Ke3" secondAttribute="leading" id="yvF-4B-f7q"/>
                                         </constraints>
                                     </customView>
                                 </subviews>
@@ -858,8 +856,6 @@
                         <outlet property="hexButton" destination="zKU-Cx-NNb" id="UDZ-qz-eEq"/>
                         <outlet property="numTextField" destination="JgQ-JU-gPg" id="H9x-Kc-4hm"/>
                         <outlet property="sbCollectionView" destination="2DB-JQ-BAh" id="sBX-pQ-hCz"/>
-                        <outlet property="separateBtn" destination="Pch-b6-eWx" id="Oek-nJ-Y3s"/>
-                        <outlet property="separateTextF" destination="hae-Cy-Yzd" id="pGI-3H-7pg"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
