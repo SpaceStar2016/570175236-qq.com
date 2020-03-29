@@ -8,6 +8,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DashBoardCViewItem">
             <connections>
+                <outlet property="indexHeight" destination="Uui-b0-QgE" id="dG2-a2-iQQ"/>
+                <outlet property="indexTextField" destination="6pQ-7T-IPm" id="96h-yj-WQU"/>
+                <outlet property="numLabel" destination="TzU-Ew-BDv" id="JIi-ba-6gf"/>
+                <outlet property="numbelHeight" destination="KbW-Ab-ONl" id="biD-it-kGa"/>
+                <outlet property="subCollHeight" destination="0Mv-bT-LyF" id="pJh-4w-XS7"/>
                 <outlet property="subCollectionView" destination="Fpo-bV-Ewv" id="qtT-4r-XFE"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -15,17 +20,17 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY" customClass="DashBoardCInnerView">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch0-ik-AJ7">
-                    <rect key="frame" x="0.0" y="60" width="150" height="140"/>
+                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch0-ik-AJ7">
+                    <rect key="frame" x="0.0" y="26" width="150" height="150"/>
                     <clipView key="contentView" id="YrH-st-dH7">
-                        <rect key="frame" x="1" y="1" width="148" height="138"/>
+                        <rect key="frame" x="1" y="1" width="148" height="148"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView id="Fpo-bV-Ewv">
-                                <rect key="frame" x="0.0" y="0.0" width="148" height="158"/>
+                                <rect key="frame" x="0.0" y="0.0" width="148" height="148"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="wZS-SB-KEY">
                                     <size key="itemSize" width="50" height="50"/>
@@ -34,19 +39,36 @@
                             </collectionView>
                         </subviews>
                     </clipView>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="0Mv-bT-LyF"/>
+                    </constraints>
                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="OmD-TI-BDm">
-                        <rect key="frame" x="1" y="123" width="148" height="16"/>
+                        <rect key="frame" x="-100" y="-100" width="148" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="cyG-iC-hbg">
-                        <rect key="frame" x="133" y="1" width="16" height="138"/>
+                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="cyG-iC-hbg">
+                        <rect key="frame" x="134" y="1" width="15" height="138"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6pQ-7T-IPm">
-                    <rect key="frame" x="-2" y="0.0" width="154" height="50"/>
+                    <rect key="frame" x="-2" y="0.0" width="154" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="Uui-b0-QgE"/>
+                    </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="Whj-Tw-Kgi">
                         <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TzU-Ew-BDv">
+                    <rect key="frame" x="-2" y="160" width="154" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="KbW-Ab-ONl"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Adz-gv-lV3">
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -54,15 +76,16 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="6pQ-7T-IPm" secondAttribute="bottom" id="72i-2i-dXD"/>
+                <constraint firstItem="TzU-Ew-BDv" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="BZY-Fk-TOh"/>
+                <constraint firstItem="TzU-Ew-BDv" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="ODc-2L-2Ce"/>
                 <constraint firstItem="ch0-ik-AJ7" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Qop-or-OI3"/>
                 <constraint firstAttribute="trailing" secondItem="6pQ-7T-IPm" secondAttribute="trailing" id="dO5-Aq-gEs"/>
-                <constraint firstItem="6pQ-7T-IPm" firstAttribute="top" secondItem="ch0-ik-AJ7" secondAttribute="bottom" constant="10" id="js4-cJ-ZsQ"/>
+                <constraint firstAttribute="trailing" secondItem="TzU-Ew-BDv" secondAttribute="trailing" id="djC-vS-Vtc"/>
                 <constraint firstAttribute="trailing" secondItem="ch0-ik-AJ7" secondAttribute="trailing" id="oVB-5f-UYE"/>
                 <constraint firstItem="ch0-ik-AJ7" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="peC-lC-M25"/>
-                <constraint firstAttribute="bottom" secondItem="ch0-ik-AJ7" secondAttribute="bottom" constant="60" id="qYz-7s-DJX"/>
                 <constraint firstItem="6pQ-7T-IPm" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="r0Y-Us-QPF"/>
             </constraints>
-            <point key="canvasLocation" x="126" y="70"/>
+            <point key="canvasLocation" x="-128" y="4"/>
         </customView>
     </objects>
 </document>

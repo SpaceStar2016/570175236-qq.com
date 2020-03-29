@@ -9,12 +9,18 @@
 #import "DashBoardCViewItem.h"
 #import "DashBoardSubCItem.h"
 #import "DashBoardCModel.h"
+#import "DashBoardSubCModel.h"
 static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 
 @interface DashBoardCViewItem ()<NSCollectionViewDelegate,NSCollectionViewDataSource>
-@property (weak) IBOutlet NSButton *testB;
 @property (weak) IBOutlet NSCollectionView *subCollectionView;
+@property (weak) IBOutlet NSTextField *indexTextField;
 @property(nonatomic,strong)NSMutableArray * subData;
+@property (weak) IBOutlet NSLayoutConstraint *subCollHeight;
+@property (weak) IBOutlet NSLayoutConstraint *indexHeight;
+@property (weak) IBOutlet NSTextField *numLabel;
+@property (weak) IBOutlet NSLayoutConstraint *numbelHeight;
+
 
 @end
 
@@ -26,8 +32,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     
     [super awakeFromNib];
     self.view.layer.backgroundColor = SPSRandomColor.CGColor;
-    self.testB.layer.backgroundColor = SPSRandomColor.CGColor;
-    
+    self.indexTextField.textColor = [NSColor blackColor];
 }
 
 - (void)viewDidLoad {
@@ -39,10 +44,10 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     [self.subCollectionView registerClass:[DashBoardSubCItem class] forItemWithIdentifier:DashBoardSubCItemID];
 
     NSCollectionViewFlowLayout * layout = self.subCollectionView.collectionViewLayout;
-    layout.estimatedItemSize = CGSizeMake(10,20);
+    layout.estimatedItemSize = CGSizeMake(20,40);
 //    layout.minimumLineSpacing = 0;
 //    layout.minimumInteritemSpacing = 0;
-    // Do view setup here.
+    // Do view setup here. 
 }
 
 #pragma mark NSCollectionViewDelegate
@@ -58,7 +63,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 
 -(NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath{
     DashBoardSubCItem *item = [collectionView makeItemWithIdentifier:DashBoardSubCItemID forIndexPath:indexPath];
-    DashBoardCModel * model = self.subData[indexPath.item];
+    DashBoardSubCModel * model = self.subData[indexPath.item];
     if (!item) {
         item = [[DashBoardSubCItem alloc] initWithNibName:@"DashBoardSubCItem" bundle:nil];
     }
@@ -70,13 +75,42 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 {
     _cModel = cModel;
     [self.subData removeAllObjects];
-    for (int i = 0;i < cModel.numberStr.length;i++) {
-        NSString * n = [cModel.numberStr substringWithRange:NSMakeRange(i,1)];
-        DashBoardCModel * mm = [[DashBoardCModel alloc] init];
-        mm.index = [NSString stringWithFormat:@"%d",i];
-        mm.numberStr = n;
-        [self.subData addObject:mm];
+    CGFloat viewHeight = self.view.height;
+    if (cModel.isExtend)
+    {
+        self.subCollHeight.constant = viewHeight * 0.8;
+        self.indexHeight.constant = viewHeight * 0.2;
+         CGFloat indexFont = self.indexHeight.constant - 1;
+        self.indexTextField.font = [NSFont systemFontOfSize:indexFont];
+        self.subCollectionView.hidden = NO;
+        self.indexTextField.hidden = YES;
+        for (int i = 0;i < cModel.numberStr.length;i++) {
+           NSString * n = [cModel.numberStr substringWithRange:NSMakeRange(i,1)];
+           DashBoardSubCModel * mm = [[DashBoardSubCModel alloc] init];
+           mm.index = [NSString stringWithFormat:@"%d",i];
+           mm.numberStr = n;
+           mm.isSingle = YES;
+           [self.subData addObject:mm];
+        }
+        self.indexTextField.stringValue = [NSString stringWithFormat:@"%@",cModel.index];
     }
+    else
+    {
+        self.subCollectionView.hidden = YES;
+        self.indexTextField.hidden = NO;
+        
+        self.numbelHeight.constant = viewHeight * 0.7;
+        
+        CGFloat numFont = self.numbelHeight.constant - 1;
+        self.numLabel.font = [NSFont systemFontOfSize:numFont];
+        self.numLabel.stringValue = cModel.numberStr;
+
+        self.indexHeight.constant = viewHeight * 0.3;
+         CGFloat indexFont = self.indexHeight.constant - 1;
+        self.indexTextField.font = [NSFont systemFontOfSize:indexFont];
+        self.indexTextField.stringValue = cModel.index;
+    }
+   
     
 }
 -(NSMutableArray *)subData
@@ -85,6 +119,13 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
         _subData = [NSMutableArray array];
     }
     return _subData;
+}
+
+-(void)viewDidLayout
+{
+    [super viewDidLayout];
+    
+     
 }
 
 @end

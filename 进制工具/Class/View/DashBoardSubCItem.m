@@ -7,10 +7,12 @@
 //
 
 #import "DashBoardSubCItem.h"
-#import "DashBoardCModel.h"
+#import "DashBoardSubCModel.h"
 @interface DashBoardSubCItem ()
 @property (weak) IBOutlet NSTextField *numberLabel;
 @property (weak) IBOutlet NSTextField *indexLabel;
+@property (weak) IBOutlet NSLayoutConstraint *numberLabelHeight;
+@property (weak) IBOutlet NSLayoutConstraint *indexLabelHeight;
 
 @end
 
@@ -19,19 +21,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.wantsLayer = YES;
-    self.view.layer.backgroundColor = SPSRandomColor.CGColor;
-    self.indexLabel.textColor = SPSRandomColor;
-    self.indexLabel.backgroundColor = SPSRandomColor;
+//    self.view.layer.backgroundColor = [].CGColor;
+    self.indexLabel.textColor = [NSColor blackColor];
+//    self.indexLabel.backgroundColor = SPSRandomColor;
+
 }
 
--(void)setCModel:(DashBoardCModel *)cModel
+-(void)setCModel:(DashBoardSubCModel *)cModel
 {
     _cModel = cModel;
-//    NSString * str = cModel.numberStr;
-//    self.numberLabel.stringValue =  cModel.numberStr;
-    [self.numberLabel setStringValue:cModel.numberStr];
-    [self.indexLabel setStringValue:cModel.index];
+    if (cModel.isSingle) {
+        [self.numberLabel setStringValue:cModel.numberStr];
+//
+    }
+    else{
+        [self.numberLabel setStringValue:cModel.numberStr];
+        [self.indexLabel setStringValue:cModel.index];
+//        [self.indexLabel setStringValue:cModel.index];
+    }
     
+}
+
+
+-(void)viewDidLayout
+{
+    [super viewDidLayout];
+    CGFloat numScale = 0;
+    if (self.cModel.isSingle) {
+        numScale = 1.0;
+    }else{
+        numScale = 0.7;
+    }
+    CGFloat viewHeight = self.view.height;
+    CGFloat indexScale = 1 - numScale;
+    
+    self.numberLabelHeight.constant = viewHeight * numScale;
+    CGFloat numFont = self.numberLabelHeight.constant - 2;
+    self.numberLabel.font = [NSFont systemFontOfSize:numFont];
+   
+    self.indexLabelHeight.constant = viewHeight * indexScale;
+     CGFloat indexFont = self.indexLabelHeight.constant - 1;
+    self.indexLabel.font = [NSFont systemFontOfSize:indexFont];
 }
 
 @end

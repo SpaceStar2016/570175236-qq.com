@@ -9,6 +9,7 @@
 #import "DashBoardVC.h"
 #import "DashBoardCViewItem.h"
 #import "DashBoardCModel.h"
+#import "SpaceByteConvert.h"
 @interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate>
 @property (weak) IBOutlet NSTextField *numTextField;
 @property(nonatomic,strong)NSMutableArray * cellData;
@@ -16,8 +17,18 @@
 @property (weak) IBOutlet NSCollectionView *sbCollectionView;
 
 @property(nonatomic,strong)NSCollectionView* collectionView;
+@property (weak) IBOutlet NSButton *decimaButton;
 
+@property (weak) IBOutlet NSButton *binaryButton;
 
+@property (weak) IBOutlet NSButton *hexButton;
+
+@property (weak) IBOutlet NSButton *separateBtn;
+@property (weak) IBOutlet NSTextField *separateTextF;
+
+@property(nonatomic,assign)NSSize smallsize;
+@property(nonatomic,assign)NSSize bigSize;
+@property(nonatomic,assign)BOOL isExtend;
 @end
 
 @implementation DashBoardVC
@@ -25,12 +36,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    self.smallsize = CGSizeMake(15,30);
+    self.bigSize = CGSizeMake(200, 100);
+    self.isExtend = NO;
+    
     self.sbCollectionView.dataSource = self;
     self.sbCollectionView.delegate = self;
     [self.sbCollectionView registerClass:[DashBoardCViewItem class] forItemWithIdentifier:@"DashBoardCViewItem"];
     NSCollectionViewFlowLayout * layout = self.sbCollectionView.collectionViewLayout;
-    layout.itemSize = CGSizeMake(100, 100);
+    
+    layout.itemSize = self.smallsize;
     datasource = [[NSMutableArray alloc] init];
     
     [self.sbCollectionView setSelectable:YES];
@@ -39,21 +54,33 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:NSControlTextDidChangeNotification object:self.numTextField];
     self.numTextField.stringValue = @"2314256789";
     
-
-    [self genData];
-    
+//    [self genData];
     [self.sbCollectionView reloadData];
+    
 }
 
--(void)genData
+-(void)genDataWithText:(NSString *)str
 {
-    for (int i = 0; i < 2; i++) {
-        DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
-        cModel.index = [NSString stringWithFormat:@"%d",i];
-        cModel.numberStr = @"123567890";
-        [self.cellData addObject:cModel];
+    [self.cellData removeAllObjects];
+    if (self.isExtend) {
+        for (int i = 0; i < 2; i++) {
+            DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
+            cModel.index = [NSString stringWithFormat:@"%d",i];
+            cModel.numberStr = @"123567890";
+            [self.cellData addObject:cModel];
+        }
+        [self.sbCollectionView reloadData];
     }
-    [self.sbCollectionView reloadData];
+    else{
+        for (int i = 0; i < str.length; i++) {
+            DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
+            cModel.index = [NSString stringWithFormat:@"%d",i];
+            cModel.numberStr = [str substringWithRange:NSMakeRange(i, 1)];
+            [self.cellData addObject:cModel];
+        }
+        [self.sbCollectionView reloadData];
+    }
+    
 }
 
 #pragma mark textFieldDidChange
@@ -61,7 +88,8 @@
 -(void)textFieldDidChange:(NSNotification *)nofi
 {
     NSLog(@"textFieldDidChange");
-//    NSTextField * t
+    NSTextField * textField = nofi.object;
+    [self genDataWithText:textField.stringValue];
 }
 
 #pragma mark NSCollectionViewDelegate
@@ -86,11 +114,32 @@
     return item;
 }
 
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    LHImageTitleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([LHImageTitleCollectionViewCell class]) forIndexPath:indexPath];
-//    [cell updateCellWithData:self.alertList[indexPath.item]];
-//    return cell;
-//}
+#pragma mark action
+- (IBAction)decimaCli:(id)sender {
+    
+    
+}
+- (IBAction)binaryCli:(id)sender {
+    NSString * binaryStr = [SpaceByteConvert binaryWithHexadecimal:self.numTextField.stringValue];
+    [self genDataWithText:binaryStr];
+    
+}
+- (IBAction)hexCli:(id)sender {
+    
+    
+}
+- (IBAction)serpaCli:(NSButton *)sender {
+    self.isExtend = !self.isExtend;
+    //分割数据
+    int num = self.separateTextF.stringValue.intValue;
+    if (num <= 1) {
+        
+    }
+    else{
+        
+    }
+    
+}
 
 
 

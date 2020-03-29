@@ -7,11 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class DashBoardCModel;
+@class DashBoardSubCModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DashBoardSubCItem : NSCollectionViewItem
-@property(nonatomic,strong)DashBoardCModel * cModel;
+@property(nonatomic,strong)DashBoardSubCModel * cModel;
 @end
 
 NS_ASSUME_NONNULL_END

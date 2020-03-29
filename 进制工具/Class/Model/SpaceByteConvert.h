@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SpaceByteConvert : NSObject
++(void)test;
++(NSString *)binaryWithHexadecimal:(NSString *)string;
 
 @end
 

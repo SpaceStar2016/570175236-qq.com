@@ -23,6 +23,7 @@
 		FCBF7ABE24271E220013FCF6 /* DB_Const.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7ABD24271E220013FCF6 /* DB_Const.m */; };
 		FCBF7AC124278BDF0013FCF6 /* DashBoardCInnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AC024278BDF0013FCF6 /* DashBoardCInnerView.m */; };
 		FCBF7AC42427917D0013FCF6 /* DashBoardCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AC32427917D0013FCF6 /* DashBoardCModel.m */; };
+		FCBF7AC824307A7B0013FCF6 /* DashBoardSubCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7AC724307A7B0013FCF6 /* DashBoardSubCModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,8 @@
 		FCBF7AC024278BDF0013FCF6 /* DashBoardCInnerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardCInnerView.m; sourceTree = "<group>"; };
 		FCBF7AC22427917D0013FCF6 /* DashBoardCModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardCModel.h; sourceTree = "<group>"; };
 		FCBF7AC32427917D0013FCF6 /* DashBoardCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardCModel.m; sourceTree = "<group>"; };
+		FCBF7AC624307A7B0013FCF6 /* DashBoardSubCModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardSubCModel.h; sourceTree = "<group>"; };
+		FCBF7AC724307A7B0013FCF6 /* DashBoardSubCModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubCModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				FCBF7AA82427115A0013FCF6 /* SpaceByteConvert.m */,
 				FCBF7AC22427917D0013FCF6 /* DashBoardCModel.h */,
 				FCBF7AC32427917D0013FCF6 /* DashBoardCModel.m */,
+				FCBF7AC624307A7B0013FCF6 /* DashBoardSubCModel.h */,
+				FCBF7AC724307A7B0013FCF6 /* DashBoardSubCModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				FCBF7AA5242711070013FCF6 /* DashBoardVC.m in Sources */,
 				8ADE8572242A248C0058AEA7 /* DashBoardSubCInnerView.m in Sources */,
 				FCBF7A98242710B50013FCF6 /* main.m in Sources */,
+				FCBF7AC824307A7B0013FCF6 /* DashBoardSubCModel.m in Sources */,
 				FCBF7AA92427115A0013FCF6 /* SpaceByteConvert.m in Sources */,
 				8ADE856E242A24720058AEA7 /* DashBoardSubCItem.m in Sources */,
 				FCBF7A8D242710B40013FCF6 /* AppDelegate.m in Sources */,

@@ -1,8 +1,8 @@
 //
-//  DashBoardCModel.h
+//  DashBoardSubCModel.h
 //  进制工具
 //
-//  Created by Space Zhong on 2020/3/22.
+//  Created by Space Zhong on 2020/3/29.
 //  Copyright © 2020 Space Zhong. All rights reserved.
 //
 
@@ -10,10 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DashBoardCModel : NSObject
+@interface DashBoardSubCModel : NSObject
 @property(nonatomic,copy)NSString * numberStr;
 @property(nonatomic,copy)NSString * index;
-@property(nonatomic,assign)BOOL isExtend;
+@property(nonatomic,assign)BOOL isSingle;
+
 @end
 
 NS_ASSUME_NONNULL_END

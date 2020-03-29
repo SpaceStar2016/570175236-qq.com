@@ -9,27 +9,35 @@
         <customObject id="-2" userLabel="File's Owner" customClass="DashBoardSubCItem">
             <connections>
                 <outlet property="indexLabel" destination="0QH-Gx-gDB" id="3Xt-PW-V0A"/>
+                <outlet property="indexLabelHeight" destination="ajq-kK-N6L" id="U6m-GN-BAh"/>
                 <outlet property="numberLabel" destination="vSj-CN-RYr" id="4Rq-JC-bjB"/>
+                <outlet property="numberLabelHeight" destination="dOC-3r-3ak" id="HJv-jB-eRH"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY" customClass="DashBoardSubCInnerView">
-            <rect key="frame" x="0.0" y="0.0" width="201" height="175"/>
+            <rect key="frame" x="0.0" y="0.0" width="168" height="43"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vSj-CN-RYr">
-                    <rect key="frame" x="76" y="152" width="50" height="23"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="1Zx-XX-glc">
+                    <rect key="frame" x="58" y="20" width="53" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="dOC-3r-3ak"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="0000" id="1Zx-XX-glc">
                         <font key="font" metaFont="system" size="20"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0QH-Gx-gDB">
-                    <rect key="frame" x="-2" y="0.0" width="205" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="Ig0-s5-UTF">
+                    <rect key="frame" x="68" y="0.0" width="33" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="ajq-kK-N6L"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="000" id="Ig0-s5-UTF">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -39,12 +47,10 @@
             <constraints>
                 <constraint firstItem="0QH-Gx-gDB" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="2l5-JY-5qe"/>
                 <constraint firstItem="vSj-CN-RYr" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="dHm-r0-yqS"/>
-                <constraint firstItem="0QH-Gx-gDB" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="ngV-Er-ET6"/>
-                <constraint firstAttribute="trailing" secondItem="0QH-Gx-gDB" secondAttribute="trailing" id="qC2-RE-QmT"/>
                 <constraint firstItem="vSj-CN-RYr" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="w83-Bi-RwF"/>
                 <constraint firstAttribute="bottom" secondItem="0QH-Gx-gDB" secondAttribute="bottom" id="yai-5u-UMM"/>
             </constraints>
-            <point key="canvasLocation" x="103.5" y="-2.5"/>
+            <point key="canvasLocation" x="188" y="-24"/>
         </customView>
     </objects>
 </document>

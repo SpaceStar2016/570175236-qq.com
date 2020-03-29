@@ -710,14 +710,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ty-aR-UgQ">
-                                <rect key="frame" x="10" y="190" width="460" height="300"/>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ty-aR-UgQ">
+                                <rect key="frame" x="10" y="190" width="370" height="300"/>
                                 <clipView key="contentView" id="Xb7-3N-sKm">
-                                    <rect key="frame" x="1" y="1" width="458" height="298"/>
+                                    <rect key="frame" x="1" y="1" width="368" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="2DB-JQ-BAh">
-                                            <rect key="frame" x="0.0" y="0.0" width="458" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="368" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="tG4-fv-Hde">
                                                 <size key="itemSize" width="50" height="50"/>
@@ -730,7 +730,7 @@
                                     <constraint firstAttribute="height" constant="300" id="zoU-ZN-bfh"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Kgp-hK-TZP">
-                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="kwr-M0-6P2">
@@ -749,19 +749,117 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="LfI-2g-9ri">
+                                <rect key="frame" x="380" y="170" width="100" height="330"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FAl-ZS-Zn8">
+                                        <rect key="frame" x="10" y="282" width="80" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="wV2-fK-mHc"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="十进制" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6pt-JE-F1R">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="decimaCli:" target="XfG-lQ-9wD" id="e0c-vE-2za"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a6X-Hv-RU8">
+                                        <rect key="frame" x="10" y="231" width="80" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="9Zl-ji-b1A"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="二进制" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PI0-P5-c7L">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="binaryCli:" target="XfG-lQ-9wD" id="FBk-5k-TLC"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zKU-Cx-NNb">
+                                        <rect key="frame" x="3" y="180" width="94" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="keo-Da-mWQ"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="十六进制" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GHC-3D-mKs">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="hexCli:" target="XfG-lQ-9wD" id="eTi-CM-82a"/>
+                                        </connections>
+                                    </button>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="9d6-If-Ke3">
+                                        <rect key="frame" x="10" y="77" width="80" height="80"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pch-b6-eWx">
+                                                <rect key="frame" x="-7" y="47" width="94" height="32"/>
+                                                <buttonCell key="cell" type="push" title="分割数据" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lSr-RA-lcv">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="serpaCli:" target="XfG-lQ-9wD" id="BCu-Bj-ndh"/>
+                                                </connections>
+                                            </button>
+                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hae-Cy-Yzd">
+                                                <rect key="frame" x="3" y="23" width="75" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="CT9-SC-ow3"/>
+                                                    <constraint firstAttribute="width" constant="75" id="yGV-kX-sdT"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="输入分割位数" drawsBackground="YES" id="4M8-df-hjv">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Pch-b6-eWx" firstAttribute="centerX" secondItem="9d6-If-Ke3" secondAttribute="centerX" id="0ef-aN-boq"/>
+                                            <constraint firstItem="hae-Cy-Yzd" firstAttribute="centerX" secondItem="9d6-If-Ke3" secondAttribute="centerX" id="DiT-hR-SBw"/>
+                                            <constraint firstAttribute="height" constant="80" id="KAo-TY-IAJ"/>
+                                            <constraint firstAttribute="width" constant="80" id="feo-R0-nEn"/>
+                                            <constraint firstItem="hae-Cy-Yzd" firstAttribute="top" secondItem="Pch-b6-eWx" secondAttribute="bottom" constant="10" id="hhq-da-aTg"/>
+                                            <constraint firstItem="Pch-b6-eWx" firstAttribute="top" secondItem="9d6-If-Ke3" secondAttribute="top" constant="5" id="pjv-7H-JFM"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="a6X-Hv-RU8" firstAttribute="top" secondItem="FAl-ZS-Zn8" secondAttribute="bottom" constant="30" id="1bh-wE-X1s"/>
+                                    <constraint firstItem="9d6-If-Ke3" firstAttribute="top" secondItem="zKU-Cx-NNb" secondAttribute="bottom" constant="30" id="4kD-G5-dng"/>
+                                    <constraint firstItem="FAl-ZS-Zn8" firstAttribute="centerX" secondItem="LfI-2g-9ri" secondAttribute="centerX" id="KgF-2r-hmk"/>
+                                    <constraint firstItem="9d6-If-Ke3" firstAttribute="centerX" secondItem="LfI-2g-9ri" secondAttribute="centerX" id="Uxb-vO-bu1"/>
+                                    <constraint firstItem="a6X-Hv-RU8" firstAttribute="centerX" secondItem="LfI-2g-9ri" secondAttribute="centerX" id="bZ4-QV-n2S"/>
+                                    <constraint firstItem="zKU-Cx-NNb" firstAttribute="top" secondItem="a6X-Hv-RU8" secondAttribute="bottom" constant="30" id="dGN-hy-Wfq"/>
+                                    <constraint firstItem="FAl-ZS-Zn8" firstAttribute="top" secondItem="LfI-2g-9ri" secondAttribute="top" constant="20" id="fzN-66-S3J"/>
+                                    <constraint firstItem="zKU-Cx-NNb" firstAttribute="centerX" secondItem="LfI-2g-9ri" secondAttribute="centerX" id="kyh-43-FQ3"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="JgQ-JU-gPg" secondAttribute="trailing" id="7kI-z3-BIb"/>
-                            <constraint firstAttribute="trailing" secondItem="1Ty-aR-UgQ" secondAttribute="trailing" constant="10" id="M0Q-rq-Yot"/>
+                            <constraint firstAttribute="trailing" secondItem="1Ty-aR-UgQ" secondAttribute="trailing" constant="100" id="M0Q-rq-Yot"/>
+                            <constraint firstItem="LfI-2g-9ri" firstAttribute="leading" secondItem="1Ty-aR-UgQ" secondAttribute="trailing" id="Mve-Yj-BLs"/>
+                            <constraint firstAttribute="trailing" secondItem="LfI-2g-9ri" secondAttribute="trailing" id="Pat-wr-9iZ"/>
                             <constraint firstItem="JgQ-JU-gPg" firstAttribute="top" secondItem="1Ty-aR-UgQ" secondAttribute="bottom" constant="20" id="dGh-sc-KuV"/>
                             <constraint firstItem="1Ty-aR-UgQ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="eIh-do-eUc"/>
                             <constraint firstItem="1Ty-aR-UgQ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="urM-1S-kTO"/>
+                            <constraint firstItem="JgQ-JU-gPg" firstAttribute="top" secondItem="LfI-2g-9ri" secondAttribute="bottom" id="wJi-1j-PtW"/>
                             <constraint firstItem="JgQ-JU-gPg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="wLY-Dw-DfO"/>
+                            <constraint firstItem="LfI-2g-9ri" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="wkZ-8w-05s"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="binaryButton" destination="a6X-Hv-RU8" id="KIs-kd-zE4"/>
+                        <outlet property="decimaButton" destination="FAl-ZS-Zn8" id="Tyl-4i-aNm"/>
+                        <outlet property="hexButton" destination="zKU-Cx-NNb" id="UDZ-qz-eEq"/>
                         <outlet property="numTextField" destination="JgQ-JU-gPg" id="H9x-Kc-4hm"/>
                         <outlet property="sbCollectionView" destination="2DB-JQ-BAh" id="sBX-pQ-hCz"/>
+                        <outlet property="separateBtn" destination="Pch-b6-eWx" id="Oek-nJ-Y3s"/>
+                        <outlet property="separateTextF" destination="hae-Cy-Yzd" id="pGI-3H-7pg"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
