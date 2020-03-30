@@ -102,13 +102,13 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
         
         self.numbelHeight.constant = viewHeight * 0.7;
         
-        CGFloat numFont = self.numbelHeight.constant - 1;
-        self.numLabel.font = [NSFont systemFontOfSize:numFont];
+//        CGFloat numFont = self.numbelHeight.constant - 1;
+        self.numLabel.font = [NSFont systemFontOfSize:25];
         self.numLabel.stringValue = cModel.numberStr;
 
         self.indexHeight.constant = viewHeight * 0.3;
-         CGFloat indexFont = self.indexHeight.constant - 1;
-        self.indexTextField.font = [NSFont systemFontOfSize:indexFont];
+//         CGFloat indexFont = self.indexHeight.constant - 1;
+        self.indexTextField.font = [NSFont systemFontOfSize:10];
         self.indexTextField.stringValue = cModel.index;
     }
    

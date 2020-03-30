@@ -12,6 +12,11 @@
 #import "SpaceByteConvert.h"
 #import "SWSTAnswerButton.h"
 #import "NNButton.h"
+#define NumTextHeight (30)
+#define IndexTextHeight (10)
+#define NumTextWidth (15)
+#define NumGap (2)
+#define IndexTextFont (10)
 @interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate>
 @property (weak) IBOutlet NSTextField *numTextField;
 @property(nonatomic,strong)NSMutableArray * cellData;
@@ -19,18 +24,21 @@
 @property (weak) IBOutlet NSCollectionView *sbCollectionView;
 
 @property(nonatomic,strong)NSCollectionView* collectionView;
-@property (weak) IBOutlet NSButton *decimaButton;
+@property (weak) IBOutlet NNButton *decimaButton;
 
 @property (weak) IBOutlet NNButton *binaryButton;
 
-@property (weak) IBOutlet NSButton *hexButton;
+@property (weak) IBOutlet NNButton *hexButton;
+@property (weak) IBOutlet NNButton *separateBtn;
 
-@property (weak) IBOutlet NSButton *separateBtn;
+
 @property (weak) IBOutlet NSTextField *separateTextF;
-
 @property(nonatomic,assign)NSSize smallsize;
 @property(nonatomic,assign)NSSize bigSize;
+@property(nonatomic,strong)NSCollectionViewFlowLayout * layout;
 @property(nonatomic,assign)BOOL isExtend;
+@property(nonatomic,strong)NSMutableArray * scaleBtnArray;
+
 @end
 
 @implementation DashBoardVC
@@ -38,19 +46,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.smallsize = CGSizeMake(15,30);
-    self.bigSize = CGSizeMake(200, 100);
+    self.smallsize = CGSizeMake(NumTextWidth + NumGap * 2,NumTextHeight);
     self.isExtend = NO;
     
     [self.binaryButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
     [self.binaryButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
+    [self.scaleBtnArray addObject:self.binaryButton];
+    
+    [self.decimaButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    [self.decimaButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
+    [self.scaleBtnArray addObject:self.decimaButton];
+    
+    [self.hexButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    [self.hexButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
+    [self.scaleBtnArray addObject:self.hexButton];
+    self.hexButton.selected = YES;
+    
+
+    [self.separateBtn setTitle:@"分割" forState:NNControlStateNormal];
+    [self.separateBtn setTitle:@"取消分割" forState:NNControlStateSelected];
     
     self.sbCollectionView.dataSource = self;
     self.sbCollectionView.delegate = self;
     [self.sbCollectionView registerClass:[DashBoardCViewItem class] forItemWithIdentifier:@"DashBoardCViewItem"];
-    NSCollectionViewFlowLayout * layout = self.sbCollectionView.collectionViewLayout;
+    self.layout = self.sbCollectionView.collectionViewLayout;
     
-    layout.itemSize = self.smallsize;
+    self.layout.itemSize = self.smallsize;
     datasource = [[NSMutableArray alloc] init];
     
     [self.sbCollectionView setSelectable:YES];
@@ -66,17 +87,34 @@
 
 -(void)genDataWithText:(NSString *)str
 {
+    int separateCount = 5;
     [self.cellData removeAllObjects];
-    if (self.isExtend) {
-        for (int i = 0; i < 2; i++) {
+    if (self.isExtend)
+    {
+        //根据字体大小计算item的宽带
+        self.layout.itemSize = CGSizeMake((NumTextWidth + NumGap) * separateCount + NumGap , NumTextHeight);
+        int strLen = (int)str.length;
+        int count = strLen / separateCount + 1;
+        for (int i = 0; i < count; i++)
+        {
+//            NSLog(@"i======%d",i);
+            int len = 0;
+            if (separateCount * (i+1) > strLen) {
+                len = strLen % separateCount;
+            }else{
+                len = separateCount;
+            }
             DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
             cModel.index = [NSString stringWithFormat:@"%d",i];
-            cModel.numberStr = @"123567890";
+            
+            cModel.numberStr = [str substringWithRange:NSMakeRange(i * separateCount, len)];
             [self.cellData addObject:cModel];
         }
         [self.sbCollectionView reloadData];
     }
-    else{
+    else
+    {
+        self.layout.itemSize = self.smallsize;
         for (int i = 0; i < str.length; i++) {
             DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
             cModel.index = [NSString stringWithFormat:@"%d",i];
@@ -85,6 +123,11 @@
         }
         [self.sbCollectionView reloadData];
     }
+    
+}
+
+-(void)separateWithInt:(int)num
+{
     
 }
 
@@ -120,22 +163,39 @@
 }
 
 #pragma mark action
-- (IBAction)decimaCli:(id)sender {
-    
+- (IBAction)decimaCli:(NNButton *)sender {
+    [self.scaleBtnArray removeObject:sender];
+    for (NNButton * nb in self.scaleBtnArray) {
+        nb.selected = NO;
+    }
+    [self.scaleBtnArray addObject:sender];
+    sender.selected = !sender.selected;
     
 }
 - (IBAction)binaryCli:(NNButton *)sender {
+    [self.scaleBtnArray removeObject:sender];
+    for (NNButton * nb in self.scaleBtnArray) {
+        nb.selected = NO;
+    }
+    [self.scaleBtnArray addObject:sender];
     sender.selected = !sender.selected;
     NSString * binaryStr = [SpaceByteConvert binaryWithHexadecimal:self.numTextField.stringValue];
     [self genDataWithText:binaryStr];
     
 }
-- (IBAction)hexCli:(id)sender {
-    
+- (IBAction)hexCli:(NNButton *)sender {
+    [self.scaleBtnArray removeObject:sender];
+    for (NNButton * nb in self.scaleBtnArray) {
+        nb.selected = NO;
+    }
+    [self.scaleBtnArray addObject:sender];
+    sender.selected = !sender.selected;
     
 }
-- (IBAction)serpaCli:(NSButton *)sender {
+- (IBAction)serpaCli:(NNButton *)sender {
+    sender.selected = !sender.selected;
     self.isExtend = !self.isExtend;
+    [self genDataWithText:self.numTextField.stringValue];
     //分割数据
     int num = self.separateTextF.stringValue.intValue;
     if (num <= 1) {
@@ -148,7 +208,13 @@
 }
 
 
-
+-(NSMutableArray *)scaleBtnArray
+{
+    if (_scaleBtnArray == nil) {
+        _scaleBtnArray = [NSMutableArray array];
+    }
+    return _scaleBtnArray;
+}
 
 -(NSMutableArray *)cellData
 {

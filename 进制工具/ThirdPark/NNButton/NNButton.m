@@ -112,21 +112,21 @@ NSString * const kCornerRadius = @"CornerRadius";
 }
 
 #pragma -NSEvent
-- (void)mouseEntered:(NSEvent *)theEvent {
-    self.hover = true;
-}
-
-- (void)mouseExited:(NSEvent *)theEvent {
-    self.hover = false;
-}
-
-- (void)mouseDown:(NSEvent *)event {
-    self.mouseUp = false;
-}
-
-- (void)mouseUp:(NSEvent *)event {
-    self.mouseUp = true;
-}
+//- (void)mouseEntered:(NSEvent *)theEvent {
+//    self.hover = true;
+//}
+//
+//- (void)mouseExited:(NSEvent *)theEvent {
+//    self.hover = false;
+//}
+//
+//- (void)mouseDown:(NSEvent *)event {
+//    self.mouseUp = false;
+//}
+//
+//- (void)mouseUp:(NSEvent *)event {
+//    self.mouseUp = true;
+//}
 
 #pragma mark -observe
 
