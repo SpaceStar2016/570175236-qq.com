@@ -33,6 +33,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     [super awakeFromNib];
     self.view.layer.backgroundColor = SPSRandomColor.CGColor;
     self.indexTextField.textColor = [NSColor blackColor];
+    
 }
 
 - (void)viewDidLoad {
