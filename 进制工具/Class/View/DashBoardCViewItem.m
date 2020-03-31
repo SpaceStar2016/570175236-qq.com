@@ -20,7 +20,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 @property (weak) IBOutlet NSLayoutConstraint *indexHeight;
 @property (weak) IBOutlet NSTextField *numLabel;
 @property (weak) IBOutlet NSLayoutConstraint *numbelHeight;
-
+@property(nonatomic,strong)NSCollectionViewFlowLayout * layout;
 
 @end
 
@@ -44,11 +44,9 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     self.subCollectionView.delegate = self;
     [self.subCollectionView registerClass:[DashBoardSubCItem class] forItemWithIdentifier:DashBoardSubCItemID];
 
-    NSCollectionViewFlowLayout * layout = self.subCollectionView.collectionViewLayout;
-    layout.estimatedItemSize = CGSizeMake(20,40);
-//    layout.minimumLineSpacing = 0;
-//    layout.minimumInteritemSpacing = 0;
-    // Do view setup here. 
+    self.layout = self.subCollectionView.collectionViewLayout;
+    self.layout.itemSize = CGSizeMake(20,40);
+
 }
 
 #pragma mark NSCollectionViewDelegate
@@ -79,12 +77,17 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     CGFloat viewHeight = self.view.height;
     if (cModel.isExtend)
     {
+        self.subCollectionView.hidden = NO;
+        self.numLabel.hidden = YES;
+        
+//        self.layout.itemSize = CGSizeMake((NumTextWidth + NumGap) * 5 + NumGap , NumTextHeight);
+        self.layout.itemSize = CGSizeMake(5,15);
+        
         self.subCollHeight.constant = viewHeight * 0.8;
         self.indexHeight.constant = viewHeight * 0.2;
          CGFloat indexFont = self.indexHeight.constant - 1;
         self.indexTextField.font = [NSFont systemFontOfSize:indexFont];
-        self.subCollectionView.hidden = NO;
-        self.indexTextField.hidden = YES;
+
         for (int i = 0;i < cModel.numberStr.length;i++) {
            NSString * n = [cModel.numberStr substringWithRange:NSMakeRange(i,1)];
            DashBoardSubCModel * mm = [[DashBoardSubCModel alloc] init];
@@ -94,21 +97,22 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
            [self.subData addObject:mm];
         }
         self.indexTextField.stringValue = [NSString stringWithFormat:@"%@",cModel.index];
+        [self.subCollectionView reloadData];
     }
     else
     {
         self.subCollectionView.hidden = YES;
-        self.indexTextField.hidden = NO;
+         self.numLabel.hidden = NO;
         
         self.numbelHeight.constant = viewHeight * 0.7;
         
 //        CGFloat numFont = self.numbelHeight.constant - 1;
-        self.numLabel.font = [NSFont systemFontOfSize:25];
+        self.numLabel.font = [NSFont systemFontOfSize:20];
         self.numLabel.stringValue = cModel.numberStr;
 
         self.indexHeight.constant = viewHeight * 0.3;
 //         CGFloat indexFont = self.indexHeight.constant - 1;
-        self.indexTextField.font = [NSFont systemFontOfSize:10];
+        self.indexTextField.font = [NSFont systemFontOfSize:8];
         self.indexTextField.stringValue = cModel.index;
     }
    

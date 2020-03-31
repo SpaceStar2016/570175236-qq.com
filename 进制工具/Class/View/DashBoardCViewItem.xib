@@ -67,7 +67,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="KbW-Ab-ONl"/>
                     </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Adz-gv-lV3">
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="Adz-gv-lV3">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -85,7 +85,7 @@
                 <constraint firstItem="ch0-ik-AJ7" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="peC-lC-M25"/>
                 <constraint firstItem="6pQ-7T-IPm" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="r0Y-Us-QPF"/>
             </constraints>
-            <point key="canvasLocation" x="-128" y="4"/>
+            <point key="canvasLocation" x="13" y="-25"/>
         </customView>
     </objects>
 </document>

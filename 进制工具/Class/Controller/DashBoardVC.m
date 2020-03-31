@@ -12,11 +12,7 @@
 #import "SpaceByteConvert.h"
 #import "SWSTAnswerButton.h"
 #import "NNButton.h"
-#define NumTextHeight (30)
-#define IndexTextHeight (10)
-#define NumTextWidth (15)
-#define NumGap (2)
-#define IndexTextFont (10)
+
 @interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate>
 @property (weak) IBOutlet NSTextField *numTextField;
 @property(nonatomic,strong)NSMutableArray * cellData;
@@ -87,7 +83,7 @@
 
 -(void)genDataWithText:(NSString *)str
 {
-    int separateCount = 5;
+    int separateCount = 2;
     [self.cellData removeAllObjects];
     if (self.isExtend)
     {
@@ -105,6 +101,7 @@
                 len = separateCount;
             }
             DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
+            cModel.isExtend = self.isExtend;
             cModel.index = [NSString stringWithFormat:@"%d",i];
             
             cModel.numberStr = [str substringWithRange:NSMakeRange(i * separateCount, len)];

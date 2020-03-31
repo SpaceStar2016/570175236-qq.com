@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.wantsLayer = YES;
-//    self.view.layer.backgroundColor = [].CGColor;
+    self.view.layer.backgroundColor = SPSRandomColor.CGColor;
     self.indexLabel.textColor = [NSColor blackColor];
 //    self.indexLabel.backgroundColor = SPSRandomColor;
 
@@ -32,6 +32,7 @@
     _cModel = cModel;
     if (cModel.isSingle) {
         [self.numberLabel setStringValue:cModel.numberStr];
+        [self.indexLabel setStringValue:cModel.index];
 //
     }
     else{
@@ -56,12 +57,10 @@
     CGFloat indexScale = 1 - numScale;
     
     self.numberLabelHeight.constant = viewHeight * numScale;
-    CGFloat numFont = self.numberLabelHeight.constant - 2;
-    self.numberLabel.font = [NSFont systemFontOfSize:numFont];
+    self.numberLabel.font = [NSFont systemFontOfSize:5];
    
     self.indexLabelHeight.constant = viewHeight * indexScale;
-     CGFloat indexFont = self.indexLabelHeight.constant - 1;
-    self.indexLabel.font = [NSFont systemFontOfSize:indexFont];
+    self.indexLabel.font = [NSFont systemFontOfSize:5];
 }
 
 @end
