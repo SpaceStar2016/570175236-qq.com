@@ -21,6 +21,8 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 @property (weak) IBOutlet NSTextField *numLabel;
 @property (weak) IBOutlet NSLayoutConstraint *numbelHeight;
 @property(nonatomic,strong)NSCollectionViewFlowLayout * layout;
+@property (weak) IBOutlet NSScroller *scrollerOne;
+@property (weak) IBOutlet NSScroller *scrollerTwo;
 
 @end
 
@@ -43,10 +45,13 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     self.subCollectionView.dataSource = self;
     self.subCollectionView.delegate = self;
     [self.subCollectionView registerClass:[DashBoardSubCItem class] forItemWithIdentifier:DashBoardSubCItemID];
+//    self.subCollectionView.
 
+    self.scrollerOne.hidden = YES;
+    self.scrollerTwo.hidden = YES;
+//    self.subCollectionView.scroll
     self.layout = self.subCollectionView.collectionViewLayout;
-    self.layout.itemSize = CGSizeMake(20,40);
-
+    self.layout.minimumInteritemSpacing = 0;
 }
 
 #pragma mark NSCollectionViewDelegate
@@ -80,13 +85,11 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
         self.subCollectionView.hidden = NO;
         self.numLabel.hidden = YES;
         
-//        self.layout.itemSize = CGSizeMake((NumTextWidth + NumGap) * 5 + NumGap , NumTextHeight);
-        self.layout.itemSize = CGSizeMake(5,15);
+        self.layout.itemSize = CGSizeMake(SUB_COLLECT_NUM_WIDTH + SUB_COLLECT_GAP + 20, SUB_COLLECT_NUM_HEIGHT+SUB_COLLECT_GAP +20);
         
         self.subCollHeight.constant = viewHeight * 0.8;
         self.indexHeight.constant = viewHeight * 0.2;
-         CGFloat indexFont = self.indexHeight.constant - 1;
-        self.indexTextField.font = [NSFont systemFontOfSize:indexFont];
+        self.indexTextField.font = [NSFont systemFontOfSize:SUB_COLLECT_INDEX_FONT];
 
         for (int i = 0;i < cModel.numberStr.length;i++) {
            NSString * n = [cModel.numberStr substringWithRange:NSMakeRange(i,1)];
@@ -102,17 +105,15 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     else
     {
         self.subCollectionView.hidden = YES;
-         self.numLabel.hidden = NO;
-        
+        self.numLabel.hidden = NO;
         self.numbelHeight.constant = viewHeight * 0.7;
         
-//        CGFloat numFont = self.numbelHeight.constant - 1;
-        self.numLabel.font = [NSFont systemFontOfSize:20];
+        self.numLabel.font = [NSFont systemFontOfSize:SUB_COLLECT_NUM_FONT];
         self.numLabel.stringValue = cModel.numberStr;
 
         self.indexHeight.constant = viewHeight * 0.3;
-//         CGFloat indexFont = self.indexHeight.constant - 1;
-        self.indexTextField.font = [NSFont systemFontOfSize:8];
+
+        self.indexTextField.font = [NSFont systemFontOfSize:SUB_COLLECT_INDEX_FONT];
         self.indexTextField.stringValue = cModel.index;
     }
    

@@ -15,5 +15,9 @@
     
     // Drawing code here.
 }
+-(void)setFrame:(NSRect)frame
+{
+    
+}
 
 @end

@@ -21,8 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.wantsLayer = YES;
-    self.view.layer.backgroundColor = SPSRandomColor.CGColor;
+//    self.view.layer.backgroundColor = SPSRandomColor.CGColor;
+    self.indexLabel.backgroundColor = SPSRandomColor;
     self.indexLabel.textColor = [NSColor blackColor];
+    self.numberLabel.backgroundColor = SPSRandomColor;
+    self.numberLabel.font = [NSFont systemFontOfSize:SUB_COLLECT_NUM_FONT];
+    self.indexLabel.font = [NSFont systemFontOfSize:SUB_COLLECT_INDEX_FONT];
 //    self.indexLabel.backgroundColor = SPSRandomColor;
 
 }
@@ -30,37 +34,29 @@
 -(void)setCModel:(DashBoardSubCModel *)cModel
 {
     _cModel = cModel;
-    if (cModel.isSingle) {
-        [self.numberLabel setStringValue:cModel.numberStr];
-        [self.indexLabel setStringValue:cModel.index];
-//
-    }
-    else{
-        [self.numberLabel setStringValue:cModel.numberStr];
-        [self.indexLabel setStringValue:cModel.index];
-//        [self.indexLabel setStringValue:cModel.index];
-    }
     
+    [self.numberLabel setStringValue:cModel.numberStr];
+    [self.indexLabel setStringValue:cModel.index];
 }
 
+-(void)viewWillLayout
+{
+    [super viewWillLayout];
+    CGFloat numScale = 0.7;
+    CGFloat viewHeight = self.view.height - SUB_COLLECT_GAP;
+    CGFloat indexScale = 1 - numScale;
+
+    self.numberLabelHeight.constant = viewHeight * numScale;
+
+
+    self.indexLabelHeight.constant = viewHeight * indexScale;
+}
 
 -(void)viewDidLayout
 {
     [super viewDidLayout];
-    CGFloat numScale = 0;
-    if (self.cModel.isSingle) {
-        numScale = 1.0;
-    }else{
-        numScale = 0.7;
-    }
-    CGFloat viewHeight = self.view.height;
-    CGFloat indexScale = 1 - numScale;
+
     
-    self.numberLabelHeight.constant = viewHeight * numScale;
-    self.numberLabel.font = [NSFont systemFontOfSize:5];
-   
-    self.indexLabelHeight.constant = viewHeight * indexScale;
-    self.indexLabel.font = [NSFont systemFontOfSize:5];
 }
 
 @end

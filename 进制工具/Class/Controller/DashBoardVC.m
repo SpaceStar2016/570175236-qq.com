@@ -42,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.smallsize = CGSizeMake(NumTextWidth + NumGap * 2,NumTextHeight);
+    self.smallsize = CGSizeMake(SUB_COLLECT_NUM_WIDTH + SUB_COLLECT_GAP * 2,SUB_COLLECT_NUM_HEIGHT);
     self.isExtend = NO;
     
     [self.binaryButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
@@ -88,7 +88,7 @@
     if (self.isExtend)
     {
         //根据字体大小计算item的宽带
-        self.layout.itemSize = CGSizeMake((NumTextWidth + NumGap) * separateCount + NumGap , NumTextHeight);
+        self.layout.itemSize = CGSizeMake((SUB_COLLECT_NUM_WIDTH + SUB_COLLECT_GAP) * separateCount + 50, SUB_COLLECT_NUM_HEIGHT+50);
         int strLen = (int)str.length;
         int count = strLen / separateCount + 1;
         for (int i = 0; i < count; i++)

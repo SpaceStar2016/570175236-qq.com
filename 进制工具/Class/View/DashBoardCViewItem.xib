@@ -12,6 +12,8 @@
                 <outlet property="indexTextField" destination="6pQ-7T-IPm" id="96h-yj-WQU"/>
                 <outlet property="numLabel" destination="TzU-Ew-BDv" id="JIi-ba-6gf"/>
                 <outlet property="numbelHeight" destination="KbW-Ab-ONl" id="biD-it-kGa"/>
+                <outlet property="scrollerOne" destination="cyG-iC-hbg" id="meh-DP-RaF"/>
+                <outlet property="scrollerTwo" destination="OmD-TI-BDm" id="srj-Og-9D1"/>
                 <outlet property="subCollHeight" destination="0Mv-bT-LyF" id="pJh-4w-XS7"/>
                 <outlet property="subCollectionView" destination="Fpo-bV-Ewv" id="qtT-4r-XFE"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
@@ -23,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="150" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch0-ik-AJ7">
+                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="ch0-ik-AJ7">
                     <rect key="frame" x="0.0" y="26" width="150" height="150"/>
                     <clipView key="contentView" id="YrH-st-dH7">
                         <rect key="frame" x="1" y="1" width="148" height="148"/>
@@ -47,7 +49,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="cyG-iC-hbg">
-                        <rect key="frame" x="134" y="1" width="15" height="138"/>
+                        <rect key="frame" x="-100" y="-100" width="15" height="148"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
@@ -85,7 +87,7 @@
                 <constraint firstItem="ch0-ik-AJ7" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="peC-lC-M25"/>
                 <constraint firstItem="6pQ-7T-IPm" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="r0Y-Us-QPF"/>
             </constraints>
-            <point key="canvasLocation" x="13" y="-25"/>
+            <point key="canvasLocation" x="-153" y="-65"/>
         </customView>
     </objects>
 </document>
