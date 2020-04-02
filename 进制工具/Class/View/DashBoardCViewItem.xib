@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DashBoardCViewItem">
             <connections>
-                <outlet property="indexHeight" destination="Uui-b0-QgE" id="dG2-a2-iQQ"/>
                 <outlet property="indexTextField" destination="6pQ-7T-IPm" id="96h-yj-WQU"/>
                 <outlet property="numLabel" destination="TzU-Ew-BDv" id="JIi-ba-6gf"/>
                 <outlet property="numbelHeight" destination="KbW-Ab-ONl" id="biD-it-kGa"/>
@@ -54,10 +53,7 @@
                     </scroller>
                 </scrollView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6pQ-7T-IPm">
-                    <rect key="frame" x="-2" y="0.0" width="154" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="Uui-b0-QgE"/>
-                    </constraints>
+                    <rect key="frame" x="-2" y="0.0" width="154" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="Whj-Tw-Kgi">
                         <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

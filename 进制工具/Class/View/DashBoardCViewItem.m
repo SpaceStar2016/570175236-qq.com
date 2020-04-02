@@ -31,17 +31,18 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 
 -(void)awakeFromNib
 {
-    
     [super awakeFromNib];
-    self.view.layer.backgroundColor = SPSRandomColor.CGColor;
-    self.indexTextField.textColor = [NSColor blackColor];
+    //必须在wantsLayer 后才能设置颜色
+    self.view.wantsLayer = YES;
+    self.view.layer.backgroundColor = [NSColor yellowColor].CGColor;
+    self.indexTextField.wantsLayer = YES;
+    self.indexTextField.layer.backgroundColor = [NSColor greenColor].CGColor;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //让collectionView有layer
-    self.view.wantsLayer = YES;    
     self.subCollectionView.dataSource = self;
     self.subCollectionView.delegate = self;
     [self.subCollectionView registerClass:[DashBoardSubCItem class] forItemWithIdentifier:DashBoardSubCItemID];
@@ -85,7 +86,8 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
         self.subCollectionView.hidden = NO;
         self.numLabel.hidden = YES;
         
-        self.layout.itemSize = CGSizeMake(SUB_COLLECT_NUM_WIDTH + SUB_COLLECT_GAP + 20, SUB_COLLECT_NUM_HEIGHT+SUB_COLLECT_GAP +20);
+        //红色
+        self.layout.itemSize = CGSizeMake(SUB_COLLECT_NUM_WIDTH * 2, SUB_COLLECT_NUM_HEIGHT);
         
         self.subCollHeight.constant = viewHeight * 0.8;
         self.indexHeight.constant = viewHeight * 0.2;

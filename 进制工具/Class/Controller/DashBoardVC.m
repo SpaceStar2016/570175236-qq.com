@@ -79,6 +79,8 @@
     
     [self.sbCollectionView reloadData];
     
+    NSLog(@"bigCView==%@",self.sbCollectionView);
+    
 }
 
 -(void)genDataWithText:(NSString *)str
