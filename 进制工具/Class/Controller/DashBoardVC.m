@@ -12,7 +12,7 @@
 #import "SpaceByteConvert.h"
 #import "SWSTAnswerButton.h"
 #import "NNButton.h"
-
+#import "DashBoardScaleModel.h"
 @interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate>
 @property (weak) IBOutlet NSTextField *numTextField;
 @property(nonatomic,strong)NSMutableArray * cellData;
@@ -34,7 +34,7 @@
 @property(nonatomic,strong)NSCollectionViewFlowLayout * layout;
 @property(nonatomic,assign)BOOL isExtend;
 @property(nonatomic,strong)NSMutableArray * scaleBtnArray;
-
+@property(nonatomic,strong)NNButton * selectedButton;
 @end
 
 @implementation DashBoardVC
@@ -42,18 +42,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [SpaceByteConvert test];
+    
     self.smallsize = CGSizeMake(DB_SINGLE_ITEMW,DB_SINGLE_ITEMH);
     self.isExtend = NO;
     
     [self.binaryButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    self.binaryButton.tag = DB_SCALE_BIN;
     [self.binaryButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
     [self.scaleBtnArray addObject:self.binaryButton];
     
     [self.decimaButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    self.decimaButton.tag = DB_SCALE_DECI;
     [self.decimaButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
     [self.scaleBtnArray addObject:self.decimaButton];
     
     [self.hexButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    self.hexButton.tag = DB_SCALE_HEX;
     [self.hexButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
     [self.scaleBtnArray addObject:self.hexButton];
     self.hexButton.selected = YES;
@@ -82,10 +87,10 @@
     NSLog(@"bigCView==%@",self.sbCollectionView);
     
 }
-
+static int separateCount = 1;
 -(void)genDataWithText:(NSString *)str
 {
-    int separateCount = 2;
+    
     [self.cellData removeAllObjects];
     if (self.isExtend)
     {
@@ -163,37 +168,43 @@
 
 #pragma mark action
 - (IBAction)decimaCli:(NNButton *)sender {
+    if (sender.selected) return;
     [self.scaleBtnArray removeObject:sender];
     for (NNButton * nb in self.scaleBtnArray) {
         nb.selected = NO;
     }
     [self.scaleBtnArray addObject:sender];
     sender.selected = !sender.selected;
+    self.selectedButton = sender;
     
 }
 - (IBAction)binaryCli:(NNButton *)sender {
+    if (sender.selected) return;
     [self.scaleBtnArray removeObject:sender];
     for (NNButton * nb in self.scaleBtnArray) {
         nb.selected = NO;
     }
     [self.scaleBtnArray addObject:sender];
     sender.selected = !sender.selected;
-    NSString * binaryStr = [SpaceByteConvert binaryWithHexadecimal:self.numTextField.stringValue];
-    [self genDataWithText:binaryStr];
+    self.selectedButton = sender;
+//    NSString * binaryStr = [SpaceByteConvert binaryStrFromHexStr:self.numTextField.stringValue];
+//    [self genDataWithText:binaryStr];
     
 }
 - (IBAction)hexCli:(NNButton *)sender {
+    if (sender.selected) return;
     [self.scaleBtnArray removeObject:sender];
     for (NNButton * nb in self.scaleBtnArray) {
         nb.selected = NO;
     }
     [self.scaleBtnArray addObject:sender];
     sender.selected = !sender.selected;
-    
+    self.selectedButton = sender;
 }
 - (IBAction)serpaCli:(NNButton *)sender {
     sender.selected = !sender.selected;
     self.isExtend = !self.isExtend;
+    separateCount = self.separateTextF.stringValue.intValue;
     [self genDataWithText:self.numTextField.stringValue];
     //分割数据
     int num = self.separateTextF.stringValue.intValue;
@@ -206,6 +217,31 @@
     
 }
 
+///字符串进制转换
+-(DashBoardScaleModel *)transferScaleFrom:(DashBoardScaleModel *)typeFrom to:(DB_SCALE_TYPE)typeTo
+{
+    DashBoardScaleModel * scModel = [[DashBoardScaleModel alloc] init];
+    scModel.type = typeTo;
+    if (typeFrom.type == DB_SCALE_HEX) {
+        switch (typeTo) {
+            case DB_SCALE_BIN:
+            {
+                scModel.scaleStr = [SpaceByteConvert binStrFromHexStr:typeFrom.scaleStr];
+            }
+                break;
+            case DB_SCALE_DECI:
+                break;
+            default:
+                break;
+        }
+    }
+    return nil;
+}
+
+-(void)testes
+{
+    
+}
 
 -(NSMutableArray *)scaleBtnArray
 {

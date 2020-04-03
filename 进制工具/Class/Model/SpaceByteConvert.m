@@ -36,7 +36,7 @@
 }
 
 //16进制字符转二进制字符
-+(NSString *)binaryWithHexadecimal:(NSString *)string{
++(NSString *)binaryStrFromHexStr:(NSString *)string{
     
     long a = strtoul(string.UTF8String, NULL, 16);
     NSMutableString *binary = [[NSMutableString alloc] init];
@@ -54,13 +54,87 @@
     return binary;
 }
 
++(NSString *)hexStrFromBinStr:(NSString *)binary
+{
+    NSUInteger binLen = binary.length;
+    const char *sSrc = binary.UTF8String;
+    int times = (int)binLen / 4;
+    int x = 0;
+    NSMutableString * mString = [NSMutableString string];
+    for (int i = 0; i < times; i++) {
+        x=8*(sSrc[i*4]-'0');
+        x+=4*(sSrc[i*4+1]-'0');
+        x+=2*(sSrc[i*4+2]-'0');
+        x+=sSrc[i*4+3]-'0';
+        NSString * str = [NSString stringWithFormat:@"%1x",x];
+        [mString appendString:str];
+    }
+    return mString;
+}
+
+// void Bin2Hex(const char *sSrc,  char *sDest, int nSrcLen){
+//      int times=nSrcLen/4;
+//      char temp[times];
+//      int x=0;
+//      for(int i=0;i<times;i++){
+//        x=8*(sSrc[i*4]-'0');
+//         x+=4*(sSrc[i*4+1]-'0');
+//         x+=2*(sSrc[i*4+2]-'0');
+//         x+=sSrc[i*4+3]-'0';
+//
+//         sprintf(temp+i,"%1x",x);
+//     }
+//     memcpy(sDest,temp,times);
+//}
+
 +(void)test
 {
 //    NSData * data = [NSData da]
-    NSString * str = @"a";
-    NSData * data = [self hexStringToData:str];
-    NSString * binaryStr = [self binaryWithHexadecimal:str];
-    NSLog(@"%@",data);
+    NSString * str = [self hexStrFromBinStr:@"0x0000111101011111111111111100101011011010101001"];
+    NSLog(@"----%@",str);
+
+}
++(NSString *)decisStrFromHexStr:(NSString *)hex
+{
+    if ([hex containsString:@"0x"]) {
+        [hex stringByReplacingOccurrencesOfString:@"0x" withString:@"#"];
+    }
+    if ([hex containsString:@"0X"]) {
+        [hex stringByReplacingOccurrencesOfString:@"0X" withString:@"#"];
+    }
+    NSMutableString * mString = [NSMutableString string];
+    for (int i = 0; i < hex.length; i++) {
+        NSString * target = [NSString stringWithFormat:@"#%@",[hex substringWithRange:NSMakeRange(i, 1)]];
+        unsigned int value = 0;
+        NSScanner *scanner = [NSScanner scannerWithString:target];
+        [scanner setScanLocation:1];
+        [scanner scanHexInt:&value];
+        NSString *intStr=[NSString stringWithFormat:@"%d",value];
+        [mString appendString:intStr];
+    }
+    return mString;
+}
+
+///十进制转十六进制
++(NSString *)hexStrFromDeciStr:(NSString *)deci
+{
+    return deci;
+}
+
+///十进制转二进制
++(NSString *)binStrFromDeciStr:(NSString *)deci
+{
+    NSString * hexStr =  [self hexStrFromDeciStr:deci];
+    NSString * binStr =[self binStrFromHexStr:hexStr];
+    return binStr;
+}
+
+///二进制转十进制
++(NSString *)deciStrFromBinStr:(NSString *)bin
+{
+    NSString * hexStr = [self hexStrFromBinStr:bin];
+    NSString * deciStr = [self decisStrFromHexStr:hexStr];
+    return deciStr;
 }
 
 @end

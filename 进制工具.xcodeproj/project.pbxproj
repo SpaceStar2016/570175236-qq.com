@@ -11,6 +11,7 @@
 		8ADE856F242A24720058AEA7 /* DashBoardSubCItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ADE856D242A24720058AEA7 /* DashBoardSubCItem.xib */; };
 		8ADE8572242A248C0058AEA7 /* DashBoardSubCInnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE8571242A248C0058AEA7 /* DashBoardSubCInnerView.m */; };
 		8AFE63B52436DA6500028115 /* DashBoardSubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE63B42436DA6500028115 /* DashBoardSubItem.m */; };
+		8AFE63B82437279A00028115 /* DashBoardScaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE63B72437279A00028115 /* DashBoardScaleModel.m */; };
 		FCBF7A8D242710B40013FCF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7A8C242710B40013FCF6 /* AppDelegate.m */; };
 		FCBF7A92242710B50013FCF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBF7A91242710B50013FCF6 /* Assets.xcassets */; };
 		FCBF7A95242710B50013FCF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBF7A93242710B50013FCF6 /* Main.storyboard */; };
@@ -40,6 +41,8 @@
 		8ADE8571242A248C0058AEA7 /* DashBoardSubCInnerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubCInnerView.m; sourceTree = "<group>"; };
 		8AFE63B32436DA6500028115 /* DashBoardSubItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardSubItem.h; sourceTree = "<group>"; };
 		8AFE63B42436DA6500028115 /* DashBoardSubItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubItem.m; sourceTree = "<group>"; };
+		8AFE63B62437279A00028115 /* DashBoardScaleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardScaleModel.h; sourceTree = "<group>"; };
+		8AFE63B72437279A00028115 /* DashBoardScaleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardScaleModel.m; sourceTree = "<group>"; };
 		FCBF7A88242710B40013FCF6 /* 进制工具.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "进制工具.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBF7A8B242710B40013FCF6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FCBF7A8C242710B40013FCF6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				FCBF7AC32427917D0013FCF6 /* DashBoardCModel.m */,
 				FCBF7AC624307A7B0013FCF6 /* DashBoardSubCModel.h */,
 				FCBF7AC724307A7B0013FCF6 /* DashBoardSubCModel.m */,
+				8AFE63B62437279A00028115 /* DashBoardScaleModel.h */,
+				8AFE63B72437279A00028115 /* DashBoardScaleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				FCBF7AD82430E6640013FCF6 /* NSImage+Ext.m in Sources */,
 				8ADE856E242A24720058AEA7 /* DashBoardSubCItem.m in Sources */,
 				FCBF7ACD2430DC3E0013FCF6 /* SWSTAnswerButton.m in Sources */,
+				8AFE63B82437279A00028115 /* DashBoardScaleModel.m in Sources */,
 				FCBF7A8D242710B40013FCF6 /* AppDelegate.m in Sources */,
 				FCBF7AB824271C460013FCF6 /* NSColor+Hex.m in Sources */,
 				FCBF7AC124278BDF0013FCF6 /* DashBoardCInnerView.m in Sources */,
