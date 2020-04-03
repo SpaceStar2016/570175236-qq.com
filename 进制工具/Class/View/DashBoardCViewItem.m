@@ -10,11 +10,12 @@
 #import "DashBoardSubCItem.h"
 #import "DashBoardCModel.h"
 #import "DashBoardSubCModel.h"
+#import "DashBoardSubItem.h"
 static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 
 @interface DashBoardCViewItem ()<NSCollectionViewDelegate,NSCollectionViewDataSource>
 @property (weak) IBOutlet NSCollectionView *subCollectionView;
-@property (weak) IBOutlet NSTextField *indexTextField;
+@property (nonatomic,strong) IBOutlet NSTextField *indexTextField;
 @property(nonatomic,strong)NSMutableArray * subData;
 @property (weak) IBOutlet NSLayoutConstraint *subCollHeight;
 @property (weak) IBOutlet NSLayoutConstraint *indexHeight;
@@ -23,7 +24,8 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 @property(nonatomic,strong)NSCollectionViewFlowLayout * layout;
 @property (weak) IBOutlet NSScroller *scrollerOne;
 @property (weak) IBOutlet NSScroller *scrollerTwo;
-
+@property(nonatomic,strong)NSMutableArray * items;
+@property(nonatomic,strong)NSMutableArray * indexItems;
 @end
 
 @implementation DashBoardCViewItem
@@ -34,7 +36,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     [super awakeFromNib];
     //必须在wantsLayer 后才能设置颜色
     self.view.wantsLayer = YES;
-    self.view.layer.backgroundColor = [NSColor yellowColor].CGColor;
+//    self.view.layer.backgroundColor = [NSColor yellowColor].CGColor;
     self.indexTextField.wantsLayer = YES;
     self.indexTextField.layer.backgroundColor = [NSColor greenColor].CGColor;
     
@@ -79,44 +81,70 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 -(void)setCModel:(DashBoardCModel *)cModel
 {
     _cModel = cModel;
-    [self.subData removeAllObjects];
+    for (NSView * view in self.indexItems) {
+        [view removeFromSuperview];
+    }
+    for (NSView * view in self.items) {
+        [view removeFromSuperview];
+    }
+    [self.items removeAllObjects];
+    [self.indexItems removeAllObjects];
     CGFloat viewHeight = self.view.height;
+    CGFloat viewWidth = self.view.width;
+    CGFloat scale = 0.7;
     if (cModel.isExtend)
     {
-        self.subCollectionView.hidden = NO;
-        self.numLabel.hidden = YES;
-        
-        //红色
-        self.layout.itemSize = CGSizeMake(SUB_COLLECT_NUM_WIDTH * 2, SUB_COLLECT_NUM_HEIGHT);
-        
-        self.subCollHeight.constant = viewHeight * 0.8;
-        self.indexHeight.constant = viewHeight * 0.2;
-        self.indexTextField.font = [NSFont systemFontOfSize:SUB_COLLECT_INDEX_FONT];
-
-        for (int i = 0;i < cModel.numberStr.length;i++) {
-           NSString * n = [cModel.numberStr substringWithRange:NSMakeRange(i,1)];
-           DashBoardSubCModel * mm = [[DashBoardSubCModel alloc] init];
-           mm.index = [NSString stringWithFormat:@"%d",i];
-           mm.numberStr = n;
-           mm.isSingle = YES;
-           [self.subData addObject:mm];
-        }
+        self.indexTextField = [[NSTextField alloc] initWithFrame:CGRectMake(0,0,self.view.width,self.view.height * (1 - scale))];
+        self.indexTextField.font = [NSFont systemFontOfSize:DB_BIG_INDEXFONT];
         self.indexTextField.stringValue = [NSString stringWithFormat:@"%@",cModel.index];
-        [self.subCollectionView reloadData];
+        [self.indexTextField setAlignment:NSTextAlignmentCenter];
+        [self.view addSubview:self.indexTextField];
+        [self.indexItems addObject:self.indexTextField];
+        
+        NSInteger numCount = cModel.numberStr.length;
+        for (int i = 0;i < cModel.numberStr.length;i++) {
+            CGFloat itemH = viewHeight * scale;
+            CGFloat itemW = viewWidth / numCount;
+            CGFloat itemX = i * itemW;
+            CGFloat itemY = CGRectGetMaxY(self.indexTextField.frame);
+            DashBoardSubItem * item = [[DashBoardSubItem alloc] initWithFrame:CGRectMake(itemX,itemY,itemW,itemH)];
+            NSString * n = [cModel.numberStr substringWithRange:NSMakeRange(i,1)];
+            DashBoardSubCModel * mm = [[DashBoardSubCModel alloc] init];
+            mm.index = [NSString stringWithFormat:@"%d",i];
+            mm.numberStr = n;
+            mm.isExtend = cModel.isExtend;
+            item.cModel = mm;
+            
+            [self.view addSubview:item];
+            [self.items addObject:item];
+        }
     }
     else
     {
-        self.subCollectionView.hidden = YES;
-        self.numLabel.hidden = NO;
-        self.numbelHeight.constant = viewHeight * 0.7;
         
-        self.numLabel.font = [NSFont systemFontOfSize:SUB_COLLECT_NUM_FONT];
-        self.numLabel.stringValue = cModel.numberStr;
+        self.indexTextField = [[NSTextField alloc] initWithFrame:CGRectMake(0,0,self.view.width,self.view.height * (1 - scale))];
+        self.indexTextField.font = [NSFont systemFontOfSize:DB_BIG_INDEXFONT];
+        [self.indexTextField setAlignment:NSTextAlignmentCenter];
+        self.indexTextField.stringValue = [NSString stringWithFormat:@"%@",cModel.index];
+        [self.view addSubview:self.indexTextField];
+        
 
-        self.indexHeight.constant = viewHeight * 0.3;
-
-        self.indexTextField.font = [NSFont systemFontOfSize:SUB_COLLECT_INDEX_FONT];
-        self.indexTextField.stringValue = cModel.index;
+        CGFloat itemH = self.view.height * scale;
+        CGFloat itemW = self.view.width;
+        CGFloat itemX = 0;
+        CGFloat itemY = CGRectGetMaxY(self.indexTextField.frame);
+        DashBoardSubItem * item = [[DashBoardSubItem alloc] initWithFrame:CGRectMake(itemX,itemY,itemW,itemH)];
+        
+        DashBoardSubCModel * mm = [[DashBoardSubCModel alloc] init];
+        mm.isExtend = cModel.isExtend;
+        mm.numberStr = cModel.numberStr;
+        mm.index = @"";
+        item.cModel = mm;
+        
+        [self.view addSubview:item];
+        [self.items addObject:item];
+        [self.indexItems addObject:self.indexTextField];
+        
     }
    
     
@@ -127,6 +155,21 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
         _subData = [NSMutableArray array];
     }
     return _subData;
+}
+-(NSMutableArray *)indexItems
+{
+    if (_indexItems == nil) {
+        _indexItems = [NSMutableArray array];
+    }
+    return _indexItems;
+}
+
+-(NSMutableArray *)items
+{
+    if (_items == nil) {
+        _items = [NSMutableArray array];
+    }
+    return _items;
 }
 
 -(void)viewDidLayout

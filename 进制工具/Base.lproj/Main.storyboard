@@ -839,6 +839,17 @@
                                     <constraint firstItem="zKU-Cx-NNb" firstAttribute="centerX" secondItem="LfI-2g-9ri" secondAttribute="centerX" id="kyh-43-FQ3"/>
                                 </constraints>
                             </customView>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fjd-CY-dqB">
+                                <rect key="frame" x="0.0" y="50" width="480" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6Rl-6K-Nvs"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="临时存放区" drawsBackground="YES" id="Kmw-Ku-LLg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="JgQ-JU-gPg" secondAttribute="trailing" id="7kI-z3-BIb"/>
@@ -847,6 +858,9 @@
                             <constraint firstAttribute="trailing" secondItem="LfI-2g-9ri" secondAttribute="trailing" id="Pat-wr-9iZ"/>
                             <constraint firstItem="JgQ-JU-gPg" firstAttribute="top" secondItem="1Ty-aR-UgQ" secondAttribute="bottom" constant="20" id="dGh-sc-KuV"/>
                             <constraint firstItem="1Ty-aR-UgQ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="eIh-do-eUc"/>
+                            <constraint firstItem="Fjd-CY-dqB" firstAttribute="top" secondItem="JgQ-JU-gPg" secondAttribute="bottom" constant="20" id="i57-ca-XyE"/>
+                            <constraint firstItem="Fjd-CY-dqB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="iIP-6o-ab4"/>
+                            <constraint firstAttribute="trailing" secondItem="Fjd-CY-dqB" secondAttribute="trailing" id="qJV-qE-Sty"/>
                             <constraint firstItem="1Ty-aR-UgQ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="urM-1S-kTO"/>
                             <constraint firstItem="JgQ-JU-gPg" firstAttribute="top" secondItem="LfI-2g-9ri" secondAttribute="bottom" id="wJi-1j-PtW"/>
                             <constraint firstItem="JgQ-JU-gPg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="wLY-Dw-DfO"/>

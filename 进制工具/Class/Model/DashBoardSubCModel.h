@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DashBoardSubCModel : NSObject
 @property(nonatomic,copy)NSString * numberStr;
 @property(nonatomic,copy)NSString * index;
-@property(nonatomic,assign)BOOL isSingle;
+@property(nonatomic,assign)BOOL isExtend;
 
 @end
 

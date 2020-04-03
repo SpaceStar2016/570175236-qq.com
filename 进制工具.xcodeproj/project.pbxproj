@@ -10,6 +10,7 @@
 		8ADE856E242A24720058AEA7 /* DashBoardSubCItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE856C242A24720058AEA7 /* DashBoardSubCItem.m */; };
 		8ADE856F242A24720058AEA7 /* DashBoardSubCItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ADE856D242A24720058AEA7 /* DashBoardSubCItem.xib */; };
 		8ADE8572242A248C0058AEA7 /* DashBoardSubCInnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE8571242A248C0058AEA7 /* DashBoardSubCInnerView.m */; };
+		8AFE63B52436DA6500028115 /* DashBoardSubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE63B42436DA6500028115 /* DashBoardSubItem.m */; };
 		FCBF7A8D242710B40013FCF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7A8C242710B40013FCF6 /* AppDelegate.m */; };
 		FCBF7A92242710B50013FCF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCBF7A91242710B50013FCF6 /* Assets.xcassets */; };
 		FCBF7A95242710B50013FCF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBF7A93242710B50013FCF6 /* Main.storyboard */; };
@@ -37,6 +38,8 @@
 		8ADE856D242A24720058AEA7 /* DashBoardSubCItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardSubCItem.xib; sourceTree = "<group>"; };
 		8ADE8570242A248C0058AEA7 /* DashBoardSubCInnerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardSubCInnerView.h; sourceTree = "<group>"; };
 		8ADE8571242A248C0058AEA7 /* DashBoardSubCInnerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubCInnerView.m; sourceTree = "<group>"; };
+		8AFE63B32436DA6500028115 /* DashBoardSubItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardSubItem.h; sourceTree = "<group>"; };
+		8AFE63B42436DA6500028115 /* DashBoardSubItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubItem.m; sourceTree = "<group>"; };
 		FCBF7A88242710B40013FCF6 /* 进制工具.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "进制工具.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBF7A8B242710B40013FCF6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FCBF7A8C242710B40013FCF6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				8ADE856D242A24720058AEA7 /* DashBoardSubCItem.xib */,
 				8ADE8570242A248C0058AEA7 /* DashBoardSubCInnerView.h */,
 				8ADE8571242A248C0058AEA7 /* DashBoardSubCInnerView.m */,
+				8AFE63B32436DA6500028115 /* DashBoardSubItem.h */,
+				8AFE63B42436DA6500028115 /* DashBoardSubItem.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCBF7AD92430E6640013FCF6 /* NNButton.m in Sources */,
+				8AFE63B52436DA6500028115 /* DashBoardSubItem.m in Sources */,
 				FCBF7AD02430DD6A0013FCF6 /* NSColor+SWExtension.m in Sources */,
 				FCBF7AB924271C460013FCF6 /* NSView+Frame.m in Sources */,
 				FCBF7ABE24271E220013FCF6 /* DB_Const.m in Sources */,

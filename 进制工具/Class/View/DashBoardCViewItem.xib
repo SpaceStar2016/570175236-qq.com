@@ -8,13 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="DashBoardCViewItem">
             <connections>
-                <outlet property="indexTextField" destination="6pQ-7T-IPm" id="96h-yj-WQU"/>
-                <outlet property="numLabel" destination="TzU-Ew-BDv" id="JIi-ba-6gf"/>
-                <outlet property="numbelHeight" destination="KbW-Ab-ONl" id="biD-it-kGa"/>
-                <outlet property="scrollerOne" destination="cyG-iC-hbg" id="meh-DP-RaF"/>
-                <outlet property="scrollerTwo" destination="OmD-TI-BDm" id="srj-Og-9D1"/>
-                <outlet property="subCollHeight" destination="0Mv-bT-LyF" id="pJh-4w-XS7"/>
-                <outlet property="subCollectionView" destination="Fpo-bV-Ewv" id="qtT-4r-XFE"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -23,66 +16,6 @@
         <customView id="Hz6-mo-xeY" customClass="DashBoardCInnerView">
             <rect key="frame" x="0.0" y="0.0" width="150" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="ch0-ik-AJ7">
-                    <rect key="frame" x="0.0" y="26" width="150" height="150"/>
-                    <clipView key="contentView" id="YrH-st-dH7">
-                        <rect key="frame" x="1" y="1" width="148" height="148"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView id="Fpo-bV-Ewv">
-                                <rect key="frame" x="0.0" y="0.0" width="148" height="148"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="wZS-SB-KEY">
-                                    <size key="itemSize" width="50" height="50"/>
-                                </collectionViewFlowLayout>
-                                <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </collectionView>
-                        </subviews>
-                    </clipView>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="0Mv-bT-LyF"/>
-                    </constraints>
-                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="OmD-TI-BDm">
-                        <rect key="frame" x="-100" y="-100" width="148" height="16"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </scroller>
-                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="cyG-iC-hbg">
-                        <rect key="frame" x="-100" y="-100" width="15" height="148"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </scroller>
-                </scrollView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6pQ-7T-IPm">
-                    <rect key="frame" x="-2" y="0.0" width="154" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="Whj-Tw-Kgi">
-                        <font key="font" usesAppearanceFont="YES"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TzU-Ew-BDv">
-                    <rect key="frame" x="-2" y="160" width="154" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="16" id="KbW-Ab-ONl"/>
-                    </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="Adz-gv-lV3">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="6pQ-7T-IPm" secondAttribute="bottom" id="72i-2i-dXD"/>
-                <constraint firstItem="TzU-Ew-BDv" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="BZY-Fk-TOh"/>
-                <constraint firstItem="TzU-Ew-BDv" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="ODc-2L-2Ce"/>
-                <constraint firstItem="ch0-ik-AJ7" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="Qop-or-OI3"/>
-                <constraint firstAttribute="trailing" secondItem="6pQ-7T-IPm" secondAttribute="trailing" id="dO5-Aq-gEs"/>
-                <constraint firstAttribute="trailing" secondItem="TzU-Ew-BDv" secondAttribute="trailing" id="djC-vS-Vtc"/>
-                <constraint firstAttribute="trailing" secondItem="ch0-ik-AJ7" secondAttribute="trailing" id="oVB-5f-UYE"/>
-                <constraint firstItem="ch0-ik-AJ7" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="peC-lC-M25"/>
-                <constraint firstItem="6pQ-7T-IPm" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="r0Y-Us-QPF"/>
-            </constraints>
             <point key="canvasLocation" x="-153" y="-65"/>
         </customView>
     </objects>
