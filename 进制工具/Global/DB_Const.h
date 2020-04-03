@@ -21,10 +21,18 @@ NS_ASSUME_NONNULL_BEGIN
 #define SPSRandomColor   SPSColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 #define SPSColorMaker(r, g, b, a) [NSColor colorWithRed:((r) / 255.0) green:((g) / 255.0) blue:((b) / 255.0) alpha:(a)]
 
-#define NumTextHeight (30)
-#define IndexTextHeight (10)
-#define NumTextWidth (15)
-#define NumGap (2)
-#define IndexTextFont (10)
+//#define NumTextHeight (30)
+//#define IndexTextHeight (10)
+//#define NumTextWidth (15)
+//#define NumGap (2)
+//#define IndexTextFont (10)
+#define SUB_COLLECT_NUM_FONT (15)
+#define SUB_COLLECT_INDEX_FONT (6)
+#define SUB_COLLECT_NUM_WIDTH (15)
+#define SUB_COLLECT_NUM_HEIGHT (30)
+#define SUB_COLLECT_INDEX_WIDTH (5)
+#define SUB_COLLECT_INDEX_HEIGHT (10)
+#define SUB_COLLECT_GAP (2)
+
 
 NS_ASSUME_NONNULL_END
