@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8ADE856E242A24720058AEA7 /* DashBoardSubCItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE856C242A24720058AEA7 /* DashBoardSubCItem.m */; };
-		8ADE856F242A24720058AEA7 /* DashBoardSubCItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ADE856D242A24720058AEA7 /* DashBoardSubCItem.xib */; };
-		8ADE8572242A248C0058AEA7 /* DashBoardSubCInnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADE8571242A248C0058AEA7 /* DashBoardSubCInnerView.m */; };
 		8AFE63B52436DA6500028115 /* DashBoardSubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE63B42436DA6500028115 /* DashBoardSubItem.m */; };
 		8AFE63B82437279A00028115 /* DashBoardScaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFE63B72437279A00028115 /* DashBoardScaleModel.m */; };
 		FCBF7A8D242710B40013FCF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBF7A8C242710B40013FCF6 /* AppDelegate.m */; };
@@ -39,11 +36,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8ADE856B242A24720058AEA7 /* DashBoardSubCItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardSubCItem.h; sourceTree = "<group>"; };
-		8ADE856C242A24720058AEA7 /* DashBoardSubCItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubCItem.m; sourceTree = "<group>"; };
-		8ADE856D242A24720058AEA7 /* DashBoardSubCItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashBoardSubCItem.xib; sourceTree = "<group>"; };
-		8ADE8570242A248C0058AEA7 /* DashBoardSubCInnerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardSubCInnerView.h; sourceTree = "<group>"; };
-		8ADE8571242A248C0058AEA7 /* DashBoardSubCInnerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubCInnerView.m; sourceTree = "<group>"; };
 		8AFE63B32436DA6500028115 /* DashBoardSubItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardSubItem.h; sourceTree = "<group>"; };
 		8AFE63B42436DA6500028115 /* DashBoardSubItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashBoardSubItem.m; sourceTree = "<group>"; };
 		8AFE63B62437279A00028115 /* DashBoardScaleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashBoardScaleModel.h; sourceTree = "<group>"; };
@@ -177,11 +169,6 @@
 				FCBF7AAC24271AE80013FCF6 /* DashBoardCViewItem.xib */,
 				FCBF7ABF24278BDF0013FCF6 /* DashBoardCInnerView.h */,
 				FCBF7AC024278BDF0013FCF6 /* DashBoardCInnerView.m */,
-				8ADE856B242A24720058AEA7 /* DashBoardSubCItem.h */,
-				8ADE856C242A24720058AEA7 /* DashBoardSubCItem.m */,
-				8ADE856D242A24720058AEA7 /* DashBoardSubCItem.xib */,
-				8ADE8570242A248C0058AEA7 /* DashBoardSubCInnerView.h */,
-				8ADE8571242A248C0058AEA7 /* DashBoardSubCInnerView.m */,
 				8AFE63B32436DA6500028115 /* DashBoardSubItem.h */,
 				8AFE63B42436DA6500028115 /* DashBoardSubItem.m */,
 			);
@@ -341,7 +328,6 @@
 			files = (
 				FCBF7AAE24271AE80013FCF6 /* DashBoardCViewItem.xib in Resources */,
 				FCBF7A92242710B50013FCF6 /* Assets.xcassets in Resources */,
-				8ADE856F242A24720058AEA7 /* DashBoardSubCItem.xib in Resources */,
 				FCBF7AE1243766870013FCF6 /* Documentation.html in Resources */,
 				FCBF7A95242710B50013FCF6 /* Main.storyboard in Resources */,
 			);
@@ -361,12 +347,10 @@
 				FCBF7AE2243766870013FCF6 /* GCDAsyncUdpSocket.m in Sources */,
 				FCBF7ABE24271E220013FCF6 /* DB_Const.m in Sources */,
 				FCBF7AA5242711070013FCF6 /* DashBoardVC.m in Sources */,
-				8ADE8572242A248C0058AEA7 /* DashBoardSubCInnerView.m in Sources */,
 				FCBF7A98242710B50013FCF6 /* main.m in Sources */,
 				FCBF7AC824307A7B0013FCF6 /* DashBoardSubCModel.m in Sources */,
 				FCBF7AA92427115A0013FCF6 /* SpaceByteConvert.m in Sources */,
 				FCBF7AD82430E6640013FCF6 /* NSImage+Ext.m in Sources */,
-				8ADE856E242A24720058AEA7 /* DashBoardSubCItem.m in Sources */,
 				FCBF7ACD2430DC3E0013FCF6 /* SWSTAnswerButton.m in Sources */,
 				8AFE63B82437279A00028115 /* DashBoardScaleModel.m in Sources */,
 				FCBF7AEB243831010013FCF6 /* DBAsynSocket.m in Sources */,

@@ -7,7 +7,6 @@
 //
 
 #import "DashBoardCViewItem.h"
-#import "DashBoardSubCItem.h"
 #import "DashBoardCModel.h"
 #import "DashBoardSubCModel.h"
 #import "DashBoardSubItem.h"
@@ -15,16 +14,8 @@
 static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 
 @interface DashBoardCViewItem ()<NSCollectionViewDelegate,NSCollectionViewDataSource>
-@property (weak) IBOutlet NSCollectionView *subCollectionView;
-@property (nonatomic,strong) IBOutlet NSTextField *indexTextField;
-@property(nonatomic,strong)NSMutableArray * subData;
-@property (weak) IBOutlet NSLayoutConstraint *subCollHeight;
-@property (weak) IBOutlet NSLayoutConstraint *indexHeight;
-@property (weak) IBOutlet NSTextField *numLabel;
-@property (weak) IBOutlet NSLayoutConstraint *numbelHeight;
-@property(nonatomic,strong)NSCollectionViewFlowLayout * layout;
-@property (weak) IBOutlet NSScroller *scrollerOne;
-@property (weak) IBOutlet NSScroller *scrollerTwo;
+@property (nonatomic,strong)NSTextField *indexTextField;
+//@property(nonatomic,strong)NSMutableArray * subData;
 @property(nonatomic,strong)NSMutableArray * items;
 @property(nonatomic,strong)NSMutableArray * indexItems;
 @end
@@ -45,38 +36,6 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //让collectionView有layer
-    self.subCollectionView.dataSource = self;
-    self.subCollectionView.delegate = self;
-    [self.subCollectionView registerClass:[DashBoardSubCItem class] forItemWithIdentifier:DashBoardSubCItemID];
-//    self.subCollectionView.
-
-    self.scrollerOne.hidden = YES;
-    self.scrollerTwo.hidden = YES;
-//    self.subCollectionView.scroll
-    self.layout = self.subCollectionView.collectionViewLayout;
-    self.layout.minimumInteritemSpacing = 0;
-}
-
-#pragma mark NSCollectionViewDelegate
-#pragma mark NSCollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(NSCollectionView *)collectionView
-{
-    return 1;
-}
--(NSInteger)collectionView:(NSCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.subData.count;
-}
-
--(NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath{
-    DashBoardSubCItem *item = [collectionView makeItemWithIdentifier:DashBoardSubCItemID forIndexPath:indexPath];
-    DashBoardSubCModel * model = self.subData[indexPath.item];
-    if (!item) {
-        item = [[DashBoardSubCItem alloc] initWithNibName:@"DashBoardSubCItem" bundle:nil];
-    }
-    item.cModel = model;
-    return item;
 }
 
 -(void)setCModel:(DashBoardCModel *)cModel
@@ -152,13 +111,6 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     }
    
     
-}
--(NSMutableArray *)subData
-{
-    if (_subData == nil) {
-        _subData = [NSMutableArray array];
-    }
-    return _subData;
 }
 -(NSMutableArray *)indexItems
 {

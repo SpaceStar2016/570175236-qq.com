@@ -15,20 +15,16 @@
 #import "DashBoardScaleModel.h"
 #import "GCDAsyncSocket.h"
 #import "DBViewModel.h"
+static int separateCount = 1;
 @interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate,DBViewModelDelegate>
+
 @property (weak) IBOutlet NSTextField *numTextField;
 @property(nonatomic,strong)NSMutableArray * cellData;
-
 @property (weak) IBOutlet NSCollectionView *sbCollectionView;
-
-@property(nonatomic,strong)NSCollectionView* collectionView;
 @property (weak) IBOutlet NNButton *decimaButton;
-
 @property (weak) IBOutlet NNButton *binaryButton;
-
 @property (weak) IBOutlet NNButton *hexButton;
 @property (weak) IBOutlet NNButton *separateBtn;
-
 
 @property (weak) IBOutlet NSTextField *separateTextF;
 @property(nonatomic,assign)NSSize smallsize;
@@ -37,6 +33,8 @@
 @property(nonatomic,assign)BOOL isExtend;
 @property(nonatomic,strong)NSMutableArray * scaleBtnArray;
 @property(nonatomic,strong)NNButton * selectedButton;
+@property (weak) IBOutlet NNButton *sender00;
+@property (weak) IBOutlet NNButton *sender01;
 @property(nonatomic,strong)DBViewModel * dbViewModel;
 @end
 
@@ -49,20 +47,24 @@
     self.dbViewModel = [DBViewModel viewModel];
     [self.dbViewModel addDelegates:@[self]];
     self.smallsize = CGSizeMake(DB_SINGLE_ITEMW,DB_SINGLE_ITEMH);
-    self.isExtend = NO;
+    self.isExtend = YES;
+    separateCount = 2;
     
     [self.binaryButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    [self decorateButton:_binaryButton];
     self.binaryButton.tag = DB_SCALE_BIN;
     [self.binaryButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
     [self.scaleBtnArray addObject:self.binaryButton];
     
     [self.decimaButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    [self decorateButton:_decimaButton];
     self.decimaButton.tag = DB_SCALE_DECI;
     [self.decimaButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
     [self.scaleBtnArray addObject:self.decimaButton];
     self.decimaButton.hidden = YES;
     
     [self.hexButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
+    [self decorateButton:_hexButton];
     self.hexButton.tag = DB_SCALE_HEX;
     [self.hexButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
     [self.scaleBtnArray addObject:self.hexButton];
@@ -71,14 +73,13 @@
 
     [self.separateBtn setTitle:@"分割" forState:NNControlStateNormal];
     [self.separateBtn setTitle:@"取消分割" forState:NNControlStateSelected];
-    
+    [self decorateButton:_separateBtn];
     self.sbCollectionView.dataSource = self;
     self.sbCollectionView.delegate = self;
     [self.sbCollectionView registerClass:[DashBoardCViewItem class] forItemWithIdentifier:@"DashBoardCViewItem"];
     self.layout = self.sbCollectionView.collectionViewLayout;
     
     self.layout.itemSize = self.smallsize;
-    datasource = [[NSMutableArray alloc] init];
     
     [self.sbCollectionView setSelectable:YES];
     
@@ -86,8 +87,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:NSControlTextDidChangeNotification object:self.numTextField];
     self.numTextField.stringValue = @"2314256789";
     
+    [self.sender00 setTitleColor:[NSColor systemBlueColor]];
+    [self.sender00 setTitle:@"发送" forState:NNControlStateNormal];
+    [self decorateButton:_sender00];
+    
+    [self.sender01 setTitleColor:[NSColor systemBlueColor]];
+    [self.sender01 setTitle:@"发送" forState:NNControlStateNormal];
+    [self decorateButton:_sender01];
 }
-static int separateCount = 1;
+
 -(void)genDataWithText:(NSString *)str
 {
     [self.cellData removeAllObjects];
@@ -109,10 +117,9 @@ static int separateCount = 1;
             DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
             cModel.isExtend = self.isExtend;
             cModel.index = [NSString stringWithFormat:@"%d",i];
-            
             cModel.numberStr = [str substringWithRange:NSMakeRange(i * separateCount, len)];
             [self.cellData addObject:cModel];
-//            [self.dbViewModel.cModels addObject:cModel];
+
         }
     }
     else
@@ -156,7 +163,6 @@ static int separateCount = 1;
 
 -(NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath{
     
-//    NSLog(@"indexPath==%ld",(long)indexPath.item);
     DashBoardCModel * model = self.cellData[indexPath.item];
     DashBoardCViewItem *item = [collectionView makeItemWithIdentifier:@"DashBoardCViewItem" forIndexPath:indexPath];
     item.cModel = model;
@@ -172,6 +178,12 @@ static int separateCount = 1;
 }
 
 #pragma mark action
+
+- (IBAction)sender00Cli:(NNButton *)sender {
+}
+- (IBAction)sender01Cli:(NNButton *)sender {
+}
+
 //- (IBAction)decimaCli:(NNButton *)sender {
 //    if (sender.selected) return;
 //    [self.scaleBtnArray removeObject:sender];
@@ -183,6 +195,7 @@ static int separateCount = 1;
 //    self.selectedButton = sender;
 //
 //}
+
 - (IBAction)binaryCli:(NNButton *)sender {
     if (sender.selected) return;
     [self.scaleBtnArray removeObject:sender];
@@ -225,10 +238,17 @@ static int separateCount = 1;
 }
 - (IBAction)serpaCli:(NNButton *)sender {
     separateCount = self.separateTextF.stringValue.intValue;
-    if (!separateCount) return;
+    if (!separateCount)
+    {
+        if (self.selectedButton.tag == DB_SCALE_BIN) {
+            separateCount = 8;
+        }
+        if (self.selectedButton.tag == DB_SCALE_HEX) {
+            separateCount = 2;
+        }
+    }
     sender.selected = !sender.selected;
     self.isExtend = !self.isExtend;
-    
     [self genDataWithText:self.numTextField.stringValue];
     //分割数据
     int num = self.separateTextF.stringValue.intValue;
@@ -289,6 +309,13 @@ static int separateCount = 1;
         _cellData = [NSMutableArray array];
     }
     return _cellData;
+}
+
+-(void)decorateButton:(NNButton *)btn
+{
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 5;
+//    btn.layer.borderWidth = 2;
 }
 
 @end

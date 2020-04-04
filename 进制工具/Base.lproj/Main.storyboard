@@ -739,7 +739,7 @@
                                 </scroller>
                             </scrollView>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JgQ-JU-gPg">
-                                <rect key="frame" x="0.0" y="120" width="480" height="50"/>
+                                <rect key="frame" x="0.0" y="120" width="379" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="fvm-jH-PjJ"/>
                                 </constraints>
@@ -840,7 +840,7 @@
                                 </constraints>
                             </customView>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fjd-CY-dqB">
-                                <rect key="frame" x="0.0" y="50" width="480" height="50"/>
+                                <rect key="frame" x="0.0" y="50" width="379" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6Rl-6K-Nvs"/>
                                 </constraints>
@@ -850,21 +850,53 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Av3-ig-H8K" customClass="NNButton">
+                                <rect key="frame" x="381" y="58" width="78" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="fBs-i0-2Hy"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LZV-QI-TR3">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sender01Cli:" target="XfG-lQ-9wD" id="ftB-EB-0G8"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Gp-fD-DMs" customClass="NNButton">
+                                <rect key="frame" x="381" y="128" width="78" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="RzT-qC-4hq"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bFm-0y-o7t">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sender00Cli:" target="XfG-lQ-9wD" id="SPI-nA-egn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="JgQ-JU-gPg" secondAttribute="trailing" id="7kI-z3-BIb"/>
+                            <constraint firstItem="Av3-ig-H8K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fjd-CY-dqB" secondAttribute="trailing" symbolic="YES" id="B8e-CX-YGh"/>
+                            <constraint firstItem="2Gp-fD-DMs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JgQ-JU-gPg" secondAttribute="trailing" constant="8" symbolic="YES" id="EUl-rm-qux"/>
+                            <constraint firstItem="JgQ-JU-gPg" firstAttribute="trailing" secondItem="2DB-JQ-BAh" secondAttribute="trailing" id="KaS-9c-Xum"/>
                             <constraint firstAttribute="trailing" secondItem="1Ty-aR-UgQ" secondAttribute="trailing" constant="100" id="M0Q-rq-Yot"/>
                             <constraint firstItem="LfI-2g-9ri" firstAttribute="leading" secondItem="1Ty-aR-UgQ" secondAttribute="trailing" id="Mve-Yj-BLs"/>
                             <constraint firstAttribute="trailing" secondItem="LfI-2g-9ri" secondAttribute="trailing" id="Pat-wr-9iZ"/>
                             <constraint firstItem="JgQ-JU-gPg" firstAttribute="top" secondItem="1Ty-aR-UgQ" secondAttribute="bottom" constant="20" id="dGh-sc-KuV"/>
+                            <constraint firstItem="2Gp-fD-DMs" firstAttribute="centerY" secondItem="JgQ-JU-gPg" secondAttribute="centerY" id="eG8-tX-7mv"/>
                             <constraint firstItem="1Ty-aR-UgQ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="eIh-do-eUc"/>
                             <constraint firstItem="Fjd-CY-dqB" firstAttribute="top" secondItem="JgQ-JU-gPg" secondAttribute="bottom" constant="20" id="i57-ca-XyE"/>
                             <constraint firstItem="Fjd-CY-dqB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="iIP-6o-ab4"/>
-                            <constraint firstAttribute="trailing" secondItem="Fjd-CY-dqB" secondAttribute="trailing" id="qJV-qE-Sty"/>
+                            <constraint firstItem="Av3-ig-H8K" firstAttribute="centerY" secondItem="Fjd-CY-dqB" secondAttribute="centerY" id="jLu-6Y-OqA"/>
+                            <constraint firstAttribute="trailing" secondItem="2Gp-fD-DMs" secondAttribute="trailing" constant="27" id="rYv-jX-qJ1"/>
                             <constraint firstItem="1Ty-aR-UgQ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="urM-1S-kTO"/>
                             <constraint firstItem="JgQ-JU-gPg" firstAttribute="top" secondItem="LfI-2g-9ri" secondAttribute="bottom" id="wJi-1j-PtW"/>
                             <constraint firstItem="JgQ-JU-gPg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="wLY-Dw-DfO"/>
                             <constraint firstItem="LfI-2g-9ri" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="wkZ-8w-05s"/>
+                            <constraint firstAttribute="trailing" secondItem="Av3-ig-H8K" secondAttribute="trailing" constant="27" id="xqw-9Z-241"/>
+                            <constraint firstItem="Fjd-CY-dqB" firstAttribute="trailing" secondItem="JgQ-JU-gPg" secondAttribute="trailing" id="z8e-Ke-4fm"/>
                         </constraints>
                     </view>
                     <connections>
@@ -873,13 +905,15 @@
                         <outlet property="hexButton" destination="zKU-Cx-NNb" id="UDZ-qz-eEq"/>
                         <outlet property="numTextField" destination="JgQ-JU-gPg" id="H9x-Kc-4hm"/>
                         <outlet property="sbCollectionView" destination="2DB-JQ-BAh" id="sBX-pQ-hCz"/>
+                        <outlet property="sender00" destination="2Gp-fD-DMs" id="RtV-Vz-2g4"/>
+                        <outlet property="sender01" destination="Av3-ig-H8K" id="kel-Ol-c7s"/>
                         <outlet property="separateBtn" destination="Pch-b6-eWx" id="2ko-jP-l0s"/>
                         <outlet property="separateTextF" destination="hae-Cy-Yzd" id="7Qb-yR-HnF"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-284" y="428"/>
+            <point key="canvasLocation" x="-247" y="430"/>
         </scene>
     </scenes>
 </document>
