@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VI_ReportSocket : NSObject
+@interface DBAsynSocket : NSObject
 
-+(instancetype)shareReportSocket;
++(instancetype)asynSocket;
 
 -(void)resetReportSocket;
 

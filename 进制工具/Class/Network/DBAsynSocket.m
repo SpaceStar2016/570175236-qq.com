@@ -6,19 +6,18 @@
 //  Copyright © 2018年 ZhongSpace. All rights reserved.
 //
 
-#import "VI_ReportSocket.h"
+#import "DBAsynSocket.h"
 #import "GCDAsyncSocket.h"
-#import "VI_Device_Observer.h"
-#import "VI_NotificationModel.h"
+
 //#import "CameraNotifyModel.h"
 //#import "CameraGlobalSpyManager.h"
-@interface VI_ReportSocket()<GCDAsyncSocketDelegate>
+@interface DBAsynSocket()<GCDAsyncSocketDelegate>
 
 @property (strong, nonatomic) GCDAsyncSocket *socket;
 @property (strong, nonatomic) NSMutableArray *clientSockets;//保存客户端scoket
 @end
 
-@implementation VI_ReportSocket
+@implementation DBAsynSocket
 
 - (NSMutableArray *)clientSockets
 {
@@ -27,12 +26,12 @@
     }
     return _clientSockets;
 }
-+(instancetype)shareReportSocket
++(instancetype)asynSocket
 {
     static dispatch_once_t onceToken;
-    static VI_ReportSocket * instance = nil;
+    static DBAsynSocket * instance = nil;
     dispatch_once(&onceToken, ^{
-        instance = [[VI_ReportSocket alloc] init];
+        instance = [[DBAsynSocket alloc] init];
     });
     return instance;
 }
@@ -47,10 +46,11 @@
     return self;
 }
 
--(void)resetReportSocket
+-(void)resetSocket
 {
     if (!self.socket) {
         [self start];
+        
     }
     else
     {
@@ -100,7 +100,6 @@
     //sock 服务端的socket
     //newSocket 客户端连接的socket
     NSLog(@"%@----%@",sock, newSocket);
-    
     //1.保存连接的客户端socket(否则newSocket释放掉后链接会自动断开)
     [self.clientSockets addObject:newSocket];
 
@@ -132,11 +131,6 @@
          setOpt = 4;
          state = 2;
          */
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"dic=====%@",dic);
-           VI_NotificationModel * model =  [[VI_NotificationModel alloc] initWithDict:dic];
-            [[VI_Device_Observer shareObserver] addModel:model];
-        });
         
     }
 
