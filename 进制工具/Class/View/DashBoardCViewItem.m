@@ -11,6 +11,7 @@
 #import "DashBoardCModel.h"
 #import "DashBoardSubCModel.h"
 #import "DashBoardSubItem.h"
+#import "DBViewModel.h"
 static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
 
 @interface DashBoardCViewItem ()<NSCollectionViewDelegate,NSCollectionViewDataSource>
@@ -98,6 +99,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
         self.indexTextField.font = [NSFont systemFontOfSize:DB_BIG_INDEXFONT];
         self.indexTextField.stringValue = [NSString stringWithFormat:@"%@",cModel.index];
         [self.indexTextField setAlignment:NSTextAlignmentCenter];
+        self.indexTextField.editable = NO;
         [self.view addSubview:self.indexTextField];
         [self.indexItems addObject:self.indexTextField];
         
@@ -117,6 +119,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
             
             [self.view addSubview:item];
             [self.items addObject:item];
+            [[DBViewModel viewModel].subCmodels addObject:mm];
         }
     }
     else
@@ -143,6 +146,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
         
         [self.view addSubview:item];
         [self.items addObject:item];
+        [[DBViewModel viewModel].subCmodels addObject:mm];
         [self.indexItems addObject:self.indexTextField];
         
     }

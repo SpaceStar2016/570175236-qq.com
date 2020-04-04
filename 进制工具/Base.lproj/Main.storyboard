@@ -753,7 +753,7 @@
                                 <rect key="frame" x="380" y="170" width="100" height="330"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FAl-ZS-Zn8" customClass="NNButton">
-                                        <rect key="frame" x="10" y="282" width="80" height="32"/>
+                                        <rect key="frame" x="10" y="292" width="80" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="wV2-fK-mHc"/>
                                         </constraints>
@@ -766,7 +766,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a6X-Hv-RU8" customClass="NNButton">
-                                        <rect key="frame" x="10" y="231" width="80" height="32"/>
+                                        <rect key="frame" x="10" y="241" width="80" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="9Zl-ji-b1A"/>
                                         </constraints>
@@ -779,7 +779,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zKU-Cx-NNb" customClass="NNButton">
-                                        <rect key="frame" x="3" y="180" width="94" height="32"/>
+                                        <rect key="frame" x="3" y="190" width="94" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="keo-Da-mWQ"/>
                                         </constraints>
@@ -792,7 +792,7 @@
                                         </connections>
                                     </button>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="9d6-If-Ke3">
-                                        <rect key="frame" x="10" y="77" width="80" height="80"/>
+                                        <rect key="frame" x="10" y="87" width="80" height="80"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pch-b6-eWx" customClass="NNButton">
                                                 <rect key="frame" x="7" y="47" width="67" height="32"/>
@@ -835,7 +835,7 @@
                                     <constraint firstItem="9d6-If-Ke3" firstAttribute="centerX" secondItem="LfI-2g-9ri" secondAttribute="centerX" id="Uxb-vO-bu1"/>
                                     <constraint firstItem="a6X-Hv-RU8" firstAttribute="centerX" secondItem="LfI-2g-9ri" secondAttribute="centerX" id="bZ4-QV-n2S"/>
                                     <constraint firstItem="zKU-Cx-NNb" firstAttribute="top" secondItem="a6X-Hv-RU8" secondAttribute="bottom" constant="30" id="dGN-hy-Wfq"/>
-                                    <constraint firstItem="FAl-ZS-Zn8" firstAttribute="top" secondItem="LfI-2g-9ri" secondAttribute="top" constant="20" id="fzN-66-S3J"/>
+                                    <constraint firstItem="FAl-ZS-Zn8" firstAttribute="top" secondItem="LfI-2g-9ri" secondAttribute="top" constant="10" id="fzN-66-S3J"/>
                                     <constraint firstItem="zKU-Cx-NNb" firstAttribute="centerX" secondItem="LfI-2g-9ri" secondAttribute="centerX" id="kyh-43-FQ3"/>
                                 </constraints>
                             </customView>

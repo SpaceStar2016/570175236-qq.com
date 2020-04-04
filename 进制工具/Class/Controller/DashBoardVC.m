@@ -13,7 +13,9 @@
 #import "SWSTAnswerButton.h"
 #import "NNButton.h"
 #import "DashBoardScaleModel.h"
-@interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate>
+#import "GCDAsyncSocket.h"
+#import "DBViewModel.h"
+@interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate,DBViewModelDelegate>
 @property (weak) IBOutlet NSTextField *numTextField;
 @property(nonatomic,strong)NSMutableArray * cellData;
 
@@ -35,6 +37,7 @@
 @property(nonatomic,assign)BOOL isExtend;
 @property(nonatomic,strong)NSMutableArray * scaleBtnArray;
 @property(nonatomic,strong)NNButton * selectedButton;
+@property(nonatomic,strong)DBViewModel * dbViewModel;
 @end
 
 @implementation DashBoardVC
@@ -43,7 +46,8 @@
     [super viewDidLoad];
     
     [SpaceByteConvert test];
-    
+    self.dbViewModel = [DBViewModel viewModel];
+    [self.dbViewModel addDelegates:@[self]];
     self.smallsize = CGSizeMake(DB_SINGLE_ITEMW,DB_SINGLE_ITEMH);
     self.isExtend = NO;
     
@@ -56,6 +60,7 @@
     self.decimaButton.tag = DB_SCALE_DECI;
     [self.decimaButton setTitleColor:[NSColor redColor] forState:NNControlStateSelected];
     [self.scaleBtnArray addObject:self.decimaButton];
+    self.decimaButton.hidden = YES;
     
     [self.hexButton setTitleColor:[NSColor blackColor] forState:NNControlStateNormal];
     self.hexButton.tag = DB_SCALE_HEX;
@@ -81,16 +86,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:NSControlTextDidChangeNotification object:self.numTextField];
     self.numTextField.stringValue = @"2314256789";
     
-    
-    [self.sbCollectionView reloadData];
-    
-    NSLog(@"bigCView==%@",self.sbCollectionView);
-    
 }
 static int separateCount = 1;
 -(void)genDataWithText:(NSString *)str
 {
-    
     [self.cellData removeAllObjects];
     if (self.isExtend)
     {
@@ -100,21 +99,21 @@ static int separateCount = 1;
         int count = strLen / separateCount + 1;
         for (int i = 0; i < count; i++)
         {
-//            NSLog(@"i======%d",i);
             int len = 0;
             if (separateCount * (i+1) > strLen) {
                 len = strLen % separateCount;
             }else{
                 len = separateCount;
             }
+            if (len == 0) break;
             DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
             cModel.isExtend = self.isExtend;
             cModel.index = [NSString stringWithFormat:@"%d",i];
             
             cModel.numberStr = [str substringWithRange:NSMakeRange(i * separateCount, len)];
             [self.cellData addObject:cModel];
+//            [self.dbViewModel.cModels addObject:cModel];
         }
-        [self.sbCollectionView reloadData];
     }
     else
     {
@@ -125,21 +124,21 @@ static int separateCount = 1;
             cModel.numberStr = [str substringWithRange:NSMakeRange(i, 1)];
             [self.cellData addObject:cModel];
         }
-        [self.sbCollectionView reloadData];
     }
-    
+    [self reloadData];
 }
 
--(void)separateWithInt:(int)num
+
+-(void)reloadData
 {
-    
+    [self.dbViewModel cleanModels];
+    [self.sbCollectionView reloadData];
 }
 
 #pragma mark textFieldDidChange
 
 -(void)textFieldDidChange:(NSNotification *)nofi
 {
-    NSLog(@"textFieldDidChange");
     NSTextField * textField = nofi.object;
     [self genDataWithText:textField.stringValue];
 }
@@ -156,6 +155,7 @@ static int separateCount = 1;
 }
 
 -(NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath{
+    
 //    NSLog(@"indexPath==%ld",(long)indexPath.item);
     DashBoardCModel * model = self.cellData[indexPath.item];
     DashBoardCViewItem *item = [collectionView makeItemWithIdentifier:@"DashBoardCViewItem" forIndexPath:indexPath];
@@ -165,19 +165,24 @@ static int separateCount = 1;
     }
     return item;
 }
+#pragma mark DBViewModelDelegate
+-(void)dbViewModel:(DBViewModel *)vm strDidChange:(NSString *)totalStr
+{
+    self.numTextField.stringValue = totalStr;
+}
 
 #pragma mark action
-- (IBAction)decimaCli:(NNButton *)sender {
-    if (sender.selected) return;
-    [self.scaleBtnArray removeObject:sender];
-    for (NNButton * nb in self.scaleBtnArray) {
-        nb.selected = NO;
-    }
-    [self.scaleBtnArray addObject:sender];
-    sender.selected = !sender.selected;
-    self.selectedButton = sender;
-    
-}
+//- (IBAction)decimaCli:(NNButton *)sender {
+//    if (sender.selected) return;
+//    [self.scaleBtnArray removeObject:sender];
+//    for (NNButton * nb in self.scaleBtnArray) {
+//        nb.selected = NO;
+//    }
+//    [self.scaleBtnArray addObject:sender];
+//    sender.selected = !sender.selected;
+//    self.selectedButton = sender;
+//
+//}
 - (IBAction)binaryCli:(NNButton *)sender {
     if (sender.selected) return;
     [self.scaleBtnArray removeObject:sender];
@@ -186,7 +191,16 @@ static int separateCount = 1;
     }
     [self.scaleBtnArray addObject:sender];
     sender.selected = !sender.selected;
+    if (sender.selected) {
+        DashBoardScaleModel * scaleModel = [[DashBoardScaleModel alloc] init];
+        scaleModel.type = DB_SCALE_HEX;
+        scaleModel.scaleStr = self.numTextField.stringValue;
+        DashBoardScaleModel * desModel = [self transferScaleFrom:scaleModel to:DB_SCALE_BIN];
+        [self genDataWithText:desModel.scaleStr];
+        self.numTextField.stringValue = desModel.scaleStr;
+    }
     self.selectedButton = sender;
+    
 //    NSString * binaryStr = [SpaceByteConvert binaryStrFromHexStr:self.numTextField.stringValue];
 //    [self genDataWithText:binaryStr];
     
@@ -199,12 +213,22 @@ static int separateCount = 1;
     }
     [self.scaleBtnArray addObject:sender];
     sender.selected = !sender.selected;
+    if (sender.selected) {
+        DashBoardScaleModel * scaleModel = [[DashBoardScaleModel alloc] init];
+        scaleModel.type = DB_SCALE_BIN;
+        scaleModel.scaleStr = self.numTextField.stringValue;
+        DashBoardScaleModel * desModel = [self transferScaleFrom:scaleModel to:DB_SCALE_HEX];
+        [self genDataWithText:desModel.scaleStr];
+        self.numTextField.stringValue = desModel.scaleStr;
+    }
     self.selectedButton = sender;
 }
 - (IBAction)serpaCli:(NNButton *)sender {
+    separateCount = self.separateTextF.stringValue.intValue;
+    if (!separateCount) return;
     sender.selected = !sender.selected;
     self.isExtend = !self.isExtend;
-    separateCount = self.separateTextF.stringValue.intValue;
+    
     [self genDataWithText:self.numTextField.stringValue];
     //分割数据
     int num = self.separateTextF.stringValue.intValue;
@@ -235,12 +259,20 @@ static int separateCount = 1;
                 break;
         }
     }
-    return nil;
-}
-
--(void)testes
-{
-    
+    if (typeFrom.type == DB_SCALE_BIN) {
+        switch (typeTo) {
+            case DB_SCALE_HEX:
+            {
+                scModel.scaleStr = [SpaceByteConvert hexStrFromBinStr:typeFrom.scaleStr];
+            }
+                break;
+            case DB_SCALE_DECI:
+                break;
+            default:
+                break;
+        }
+    }
+    return scModel;
 }
 
 -(NSMutableArray *)scaleBtnArray

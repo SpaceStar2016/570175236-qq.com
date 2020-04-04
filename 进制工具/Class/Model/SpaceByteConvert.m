@@ -36,7 +36,7 @@
 }
 
 //16进制字符转二进制字符
-+(NSString *)binaryStrFromHexStr:(NSString *)string{
++(NSString *)binStrFromHexStr:(NSString *)string{
     
     long a = strtoul(string.UTF8String, NULL, 16);
     NSMutableString *binary = [[NSMutableString alloc] init];
@@ -116,25 +116,25 @@
 }
 
 ///十进制转十六进制
-+(NSString *)hexStrFromDeciStr:(NSString *)deci
-{
-    return deci;
-}
+//+(NSString *)hexStrFromDeciStr:(NSString *)deci
+//{
+//    return deci;
+//}
 
 ///十进制转二进制
-+(NSString *)binStrFromDeciStr:(NSString *)deci
-{
-    NSString * hexStr =  [self hexStrFromDeciStr:deci];
-    NSString * binStr =[self binStrFromHexStr:hexStr];
-    return binStr;
-}
+//+(NSString *)binStrFromDeciStr:(NSString *)deci
+//{
+//    NSString * hexStr =  [self hexStrFromDeciStr:deci];
+//    NSString * binStr =[self binStrFromHexStr:hexStr];
+//    return binStr;
+//}
 
 ///二进制转十进制
-+(NSString *)deciStrFromBinStr:(NSString *)bin
-{
-    NSString * hexStr = [self hexStrFromBinStr:bin];
-    NSString * deciStr = [self decisStrFromHexStr:hexStr];
-    return deciStr;
-}
+//+(NSString *)deciStrFromBinStr:(NSString *)bin
+//{
+//    NSString * hexStr = [self hexStrFromBinStr:bin];
+//    NSString * deciStr = [self decisStrFromHexStr:hexStr];
+//    return deciStr;
+//}
 
 @end

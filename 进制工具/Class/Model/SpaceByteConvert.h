@@ -17,13 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///二进制字符串转十六进制
 +(NSString *)binStrFromHexStr:(NSString *)string;
 ///十六进制转十进制
-+(NSString *)decisStrFromHexStr:(NSString *)hex;
+//+(NSString *)decisStrFromHexStr:(NSString *)hex;
 ///十进制转十六进制
-+(NSString *)hexStrFromDeciStr:(NSString *)deci;
+//+(NSString *)hexStrFromDeciStr:(NSString *)deci;
 ///十进制转二进制
-+(NSString *)binStrFromDeciStr:(NSString *)deci;
+//+(NSString *)binStrFromDeciStr:(NSString *)deci;
 ///二进制转十进制
-+(NSString *)deciStrFromBinStr:(NSString *)bin;
+//+(NSString *)deciStrFromBinStr:(NSString *)bin;
 
 @end
 
