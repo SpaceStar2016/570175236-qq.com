@@ -355,9 +355,9 @@ NSString * const kCornerRadius = @"CornerRadius";
         }
             break;
         default:
-            self.layer.borderColor = NSColor.clearColor.CGColor;
-            self.layer.borderWidth = 0;
-            self.layer.cornerRadius = 0;
+//            self.layer.borderColor = NSColor.clearColor.CGColor;
+//            self.layer.borderWidth = 0;
+//            self.layer.cornerRadius = 0;
 
             break;
     }

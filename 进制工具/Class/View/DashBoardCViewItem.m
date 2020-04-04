@@ -58,7 +58,7 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
         self.indexTextField.font = [NSFont systemFontOfSize:DB_BIG_INDEXFONT];
         self.indexTextField.stringValue = [NSString stringWithFormat:@"%@",cModel.index];
         [self.indexTextField setAlignment:NSTextAlignmentCenter];
-        self.indexTextField.editable = NO;
+//        self.indexTextField.editable = NO;
         [self.view addSubview:self.indexTextField];
         [self.indexItems addObject:self.indexTextField];
         
@@ -134,5 +134,10 @@ static NSString * const DashBoardSubCItemID = @"DashBoardSubCItem";
     
      
 }
+
+//-(void)dealloc
+//{
+//    NSLog(@"%s",__func__);
+//}
 
 @end

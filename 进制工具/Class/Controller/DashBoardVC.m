@@ -34,6 +34,7 @@ static int separateCount = 1;
 @property(nonatomic,strong)NSMutableArray * scaleBtnArray;
 @property(nonatomic,strong)NNButton * selectedButton;
 @property (weak) IBOutlet NNButton *sender00;
+@property (weak) IBOutlet NSTextField *lenTextField;
 @property (weak) IBOutlet NNButton *sender01;
 @property(nonatomic,strong)DBViewModel * dbViewModel;
 @end
@@ -71,8 +72,8 @@ static int separateCount = 1;
     self.hexButton.selected = YES;
     
 
-    [self.separateBtn setTitle:@"分割" forState:NNControlStateNormal];
-    [self.separateBtn setTitle:@"取消分割" forState:NNControlStateSelected];
+    [self.separateBtn setTitle:@"合并" forState:NNControlStateNormal];
+    [self.separateBtn setTitle:@"分割" forState:NNControlStateSelected];
     [self decorateButton:_separateBtn];
     self.sbCollectionView.dataSource = self;
     self.sbCollectionView.delegate = self;
@@ -99,6 +100,13 @@ static int separateCount = 1;
 -(void)genDataWithText:(NSString *)str
 {
     [self.cellData removeAllObjects];
+    //16进制
+    if (self.selectedButton.tag == DB_SCALE_HEX) {
+        self.lenTextField.stringValue = [NSString stringWithFormat:@"%lu bytes",str.length / 2];
+    }
+    if (self.selectedButton.tag == DB_SCALE_BIN) {
+        self.lenTextField.stringValue = [NSString stringWithFormat:@"%lu bytes",str.length / 8];
+    }
     if (self.isExtend)
     {
         //根据字体大小计算item的宽带
@@ -204,6 +212,8 @@ static int separateCount = 1;
     }
     [self.scaleBtnArray addObject:sender];
     sender.selected = !sender.selected;
+    self.selectedButton = sender;
+    separateCount = 8;
     if (sender.selected) {
         DashBoardScaleModel * scaleModel = [[DashBoardScaleModel alloc] init];
         scaleModel.type = DB_SCALE_HEX;
@@ -212,7 +222,7 @@ static int separateCount = 1;
         [self genDataWithText:desModel.scaleStr];
         self.numTextField.stringValue = desModel.scaleStr;
     }
-    self.selectedButton = sender;
+    
     
 //    NSString * binaryStr = [SpaceByteConvert binaryStrFromHexStr:self.numTextField.stringValue];
 //    [self genDataWithText:binaryStr];
@@ -226,6 +236,8 @@ static int separateCount = 1;
     }
     [self.scaleBtnArray addObject:sender];
     sender.selected = !sender.selected;
+    self.selectedButton = sender;
+    separateCount = 2;
     if (sender.selected) {
         DashBoardScaleModel * scaleModel = [[DashBoardScaleModel alloc] init];
         scaleModel.type = DB_SCALE_BIN;
@@ -234,7 +246,7 @@ static int separateCount = 1;
         [self genDataWithText:desModel.scaleStr];
         self.numTextField.stringValue = desModel.scaleStr;
     }
-    self.selectedButton = sender;
+    
 }
 - (IBAction)serpaCli:(NNButton *)sender {
     separateCount = self.separateTextF.stringValue.intValue;
@@ -313,9 +325,13 @@ static int separateCount = 1;
 
 -(void)decorateButton:(NNButton *)btn
 {
+//    btn.wantsLayer = YES;
+    
+
+    btn.wantsLayer = YES;
     btn.layer.masksToBounds = YES;
-    btn.layer.cornerRadius = 5;
-//    btn.layer.borderWidth = 2;
+    btn.layer.cornerRadius = 8;
+    btn.layer.borderWidth = 2;
 }
 
 @end

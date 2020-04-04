@@ -9,5 +9,8 @@
 #import "DashBoardCModel.h"
 
 @implementation DashBoardCModel
-
+//-(void)dealloc
+//{
+//    NSLog(@"%s",__func__);
+//}
 @end
