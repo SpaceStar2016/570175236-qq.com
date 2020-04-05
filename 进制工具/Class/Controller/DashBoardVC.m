@@ -13,13 +13,13 @@
 #import "SWSTAnswerButton.h"
 #import "NNButton.h"
 #import "DashBoardScaleModel.h"
-#import "GCDAsyncSocket.h"
+#import "DBAsynSocket.h"
 #import "DBViewModel.h"
 static int separateCount = 1;
-@interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate,DBViewModelDelegate>
+@interface DashBoardVC ()<NSCollectionViewDelegate,NSCollectionViewDataSource,NSTextFieldDelegate,DBViewModelDelegate,NSTabViewDelegate,NSTableViewDataSource>
 
 @property (weak) IBOutlet NSTextField *numTextField;
-@property(nonatomic,strong)NSMutableArray * cellData;
+@property(nonatomic,strong)NSMutableArray * sbCData;
 @property (weak) IBOutlet NSCollectionView *sbCollectionView;
 @property (weak) IBOutlet NNButton *decimaButton;
 @property (weak) IBOutlet NNButton *binaryButton;
@@ -37,6 +37,14 @@ static int separateCount = 1;
 @property (weak) IBOutlet NSTextField *lenTextField;
 @property (weak) IBOutlet NNButton *sender01;
 @property(nonatomic,strong)DBViewModel * dbViewModel;
+
+@property (weak) IBOutlet NSSearchField *searchField;
+@property (weak) IBOutlet NSTableView *tableView;
+
+@property(nonatomic,strong)NSMutableArray * tAllData;
+@property (weak) IBOutlet NSView *searchContainer;
+@property(nonatomic,strong)NSArray * tData;
+@property(nonatomic,strong)DBAsynSocket * dbSocket;
 @end
 
 @implementation DashBoardVC
@@ -75,14 +83,16 @@ static int separateCount = 1;
     [self.separateBtn setTitle:@"合并" forState:NNControlStateNormal];
     [self.separateBtn setTitle:@"分割" forState:NNControlStateSelected];
     [self decorateButton:_separateBtn];
+    
     self.sbCollectionView.dataSource = self;
     self.sbCollectionView.delegate = self;
     [self.sbCollectionView registerClass:[DashBoardCViewItem class] forItemWithIdentifier:@"DashBoardCViewItem"];
     self.layout = self.sbCollectionView.collectionViewLayout;
-    
     self.layout.itemSize = self.smallsize;
-    
     [self.sbCollectionView setSelectable:YES];
+    
+    self.tableView.delegate = (id<NSTableViewDelegate>)self;
+    self.tableView.dataSource = self;
     
     self.numTextField.delegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:NSControlTextDidChangeNotification object:self.numTextField];
@@ -95,11 +105,23 @@ static int separateCount = 1;
     [self.sender01 setTitleColor:[NSColor systemBlueColor]];
     [self.sender01 setTitle:@"发送" forState:NNControlStateNormal];
     [self decorateButton:_sender01];
+    
+    self.searchContainer.wantsLayer = YES;
+    self.searchContainer.layer.borderWidth = 0.5;
+    self.searchContainer.layer.borderColor = [NSColor systemBlueColor].CGColor;
+    //data for text
+    for (int i = 0; i < 100; i++) {
+        [self.tAllData addObject:[NSString stringWithFormat:@"%d",i]];
+    }
+    [self fontSearchFieldIsChanged:self.searchField];
+    
+    self.dbSocket = [DBAsynSocket asynSocket];
+
 }
 
 -(void)genDataWithText:(NSString *)str
 {
-    [self.cellData removeAllObjects];
+    [self.sbCData removeAllObjects];
     //16进制
     if (self.selectedButton.tag == DB_SCALE_HEX) {
         self.lenTextField.stringValue = [NSString stringWithFormat:@"%lu bytes",str.length / 2];
@@ -126,7 +148,7 @@ static int separateCount = 1;
             cModel.isExtend = self.isExtend;
             cModel.index = [NSString stringWithFormat:@"%d",i];
             cModel.numberStr = [str substringWithRange:NSMakeRange(i * separateCount, len)];
-            [self.cellData addObject:cModel];
+            [self.sbCData addObject:cModel];
 
         }
     }
@@ -137,11 +159,12 @@ static int separateCount = 1;
             DashBoardCModel * cModel = [[DashBoardCModel alloc] init];
             cModel.index = [NSString stringWithFormat:@"%d",i];
             cModel.numberStr = [str substringWithRange:NSMakeRange(i, 1)];
-            [self.cellData addObject:cModel];
+            [self.sbCData addObject:cModel];
         }
     }
     [self reloadData];
 }
+
 
 
 -(void)reloadData
@@ -160,18 +183,19 @@ static int separateCount = 1;
 
 #pragma mark NSCollectionViewDelegate
 #pragma mark NSCollectionViewDataSource
+
 - (NSInteger)numberOfSectionsInCollectionView:(NSCollectionView *)collectionView
 {
     return 1;
 }
 -(NSInteger)collectionView:(NSCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.cellData.count;
+    return self.sbCData.count;
 }
 
 -(NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath{
     
-    DashBoardCModel * model = self.cellData[indexPath.item];
+    DashBoardCModel * model = self.sbCData[indexPath.item];
     DashBoardCViewItem *item = [collectionView makeItemWithIdentifier:@"DashBoardCViewItem" forIndexPath:indexPath];
     item.cModel = model;
     if (!item) {
@@ -179,6 +203,41 @@ static int separateCount = 1;
     }
     return item;
 }
+
+#pragma mark NSTabViewDelegate
+#pragma mark NSTableViewDataSource
+- (IBAction)fontSearchFieldIsChanged:(NSSearchField *)sender {
+    self.tData = [self createListWithSearchWord:sender.stringValue list:self.tAllData];
+    [self.tableView reloadData];
+}
+- (NSArray *)createListWithSearchWord:(NSString *)searchWord list:(NSArray<NSString *> *)oldList {
+    if (!searchWord.length) {
+        return oldList;
+    }
+    NSMutableArray *newList = [NSMutableArray array];
+    [oldList enumerateObjectsUsingBlock:^(NSString *fixedElement, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSRange searchResult = [fixedElement rangeOfString:searchWord];
+        if (searchResult.location != NSNotFound) {
+            [newList addObject:fixedElement];
+        }
+    }];
+    return newList;
+}
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView{
+    return self.tData.count;
+}
+
+- (NSView *)tableView:(NSTableView *)tableView
+   viewForTableColumn:(NSTableColumn *)tableColumn
+                  row:(NSInteger)row{
+    NSString        *identifier = tableColumn.identifier;
+    NSTableCellView *cellView   = [tableView makeViewWithIdentifier:identifier owner:self];
+    cellView.textField.editable = YES;
+    cellView.textField.stringValue = self.tData[row];
+    return cellView;
+}
+
+
 #pragma mark DBViewModelDelegate
 -(void)dbViewModel:(DBViewModel *)vm strDidChange:(NSString *)totalStr
 {
@@ -315,12 +374,20 @@ static int separateCount = 1;
     return _scaleBtnArray;
 }
 
--(NSMutableArray *)cellData
+-(NSMutableArray *)sbCData
 {
-    if (_cellData == nil) {
-        _cellData = [NSMutableArray array];
+    if (_sbCData == nil) {
+        _sbCData = [NSMutableArray array];
     }
-    return _cellData;
+    return _sbCData;
+}
+
+-(NSMutableArray *)tAllData
+{
+    if (!_tAllData) {
+        _tAllData = [NSMutableArray array];
+    }
+    return _tAllData;
 }
 
 -(void)decorateButton:(NNButton *)btn

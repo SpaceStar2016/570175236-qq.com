@@ -11,7 +11,7 @@
 @implementation SpaceByteConvert
 
 //十六进制数据字符串转换为data
-+ (NSData *)hexStringToData:(NSString*)str {
++ (NSData *)dataFromHexString:(NSString*)str {
     if (!self || str.length == 0) {
         return nil;
     }

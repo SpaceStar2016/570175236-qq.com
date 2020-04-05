@@ -80,7 +80,7 @@
     //2.绑定端口(5288)
     //端口任意，但遵循有效端口原则范围：0~65535，其中0~1024由系统使用或者保留端口，开发中建议使用1024以上的端口
     NSError *error = nil;
-    [serviceScoket acceptOnPort:5678 error:&error];
+    [serviceScoket acceptOnPort:5679 error:&error];
     
     //3.开启服务(实质第二步绑定端口的同时默认开启服务)
     if (error == nil)
