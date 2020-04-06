@@ -72,33 +72,37 @@
     return mString;
 }
 
-// void Bin2Hex(const char *sSrc,  char *sDest, int nSrcLen){
-//      int times=nSrcLen/4;
-//      char temp[times];
-//      int x=0;
-//      for(int i=0;i<times;i++){
-//        x=8*(sSrc[i*4]-'0');
-//         x+=4*(sSrc[i*4+1]-'0');
-//         x+=2*(sSrc[i*4+2]-'0');
-//         x+=sSrc[i*4+3]-'0';
-//
-//         sprintf(temp+i,"%1x",x);
-//     }
-//     memcpy(sDest,temp,times);
-//}
++(NSString *)deciStrFromHexStr:(NSString *)hex
+{
+    char * s = (char *)hex.UTF8String;
+    int i = 0,t = 0;             //t记录临时加的数
+    long long sum =0;
+    for(;s[i];i++)
+    {
+        if(s[i]>='0'&&s[i]<='9')
+        t=s[i]-'0';       //当字符是0~9时保持原数不变
+        if(s[i]>='a'&&s[i]<='z')
+        t=s[i]-'a'+10;
+        if(s[i]>='A'&&s[i]<='Z')
+        t=s[i]-'A'+10;
+        sum=sum*16+t;
+    }
+    return [NSString stringWithFormat:@"%lld",sum];
+}
 
 +(void)test
 {
 //    NSData * data = [NSData da]
 //    NSString * str = [self hexStrFromBinStr:@"0x0000111101011111111111111100101011011010101001"];
 //    NSLog(@"----%@",str);
-//    NSString * str = @"abc";
+    NSString * str = @"111a1111111111111111111111111111111";
+//    long value = fun(str.UTF8String);
 //    int longStr =  str.longLongValue;
 //
 //
-//    NSString * ss = [self decisStrFromHexStr:str];
+    NSString * ss = [self deciStrFromHexStr:str];
      NSLog(@"---");
-    unsigned int he = 0xff;
+    unsigned int he = 0x22;
     long long re=0;   // 保存转换为10进制的结果
     int k=16;   // 16进制
     int n=1;    // 位权
@@ -112,29 +116,7 @@
     printf("ll%d",re); // 输出转换后的结果
 
 }
-+(NSString *)decisStrFromHexStr:(NSString *)hex
-{
-    if ([hex containsString:@"0x"]) {
-        [hex stringByReplacingOccurrencesOfString:@"0x" withString:@"#"];
-    }
-    if ([hex containsString:@"0X"]) {
-        [hex stringByReplacingOccurrencesOfString:@"0X" withString:@"#"];
-    }
-    long long longStrValue = 0;
-    NSMutableString * mString = [NSMutableString string];
-    for (int i = 0; i < hex.length; i++) {
-        NSString * target = [NSString stringWithFormat:@"#%@",[hex substringWithRange:NSMakeRange(i, 1)]];
-        unsigned int value = 0;
-        NSScanner *scanner = [NSScanner scannerWithString:target];
-        [scanner setScanLocation:1];
-        [scanner scanHexInt:&value];
-        longStrValue += value;
-//        NSString *intStr=[NSString stringWithFormat:@"%d",value];
-//        [mString appendString:intStr];
-    }
-    NSString * end = [NSString stringWithFormat:@"%lld",longStrValue];
-    return end;
-}
+
 
 ///十进制转十六进制
 //+(NSString *)hexStrFromDeciStr:(NSString *)deci

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///从十六进制转换成data
 + (NSData *)dataFromHexString:(NSString*)str;
 ///十六进制转十进制
-//+(NSString *)decisStrFromHexStr:(NSString *)hex;
++(NSString *)deciStrFromHexStr:(NSString *)hex;
 ///十进制转十六进制
 //+(NSString *)hexStrFromDeciStr:(NSString *)deci;
 ///十进制转二进制

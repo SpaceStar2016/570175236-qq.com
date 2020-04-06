@@ -124,10 +124,10 @@ static int separateCount = 1;
     [self.sbCData removeAllObjects];
     //16进制
     if (self.selectedButton.tag == DB_SCALE_HEX) {
-        self.lenTextField.stringValue = [NSString stringWithFormat:@"%lu bytes",str.length / 2];
+        self.lenTextField.stringValue = [NSString stringWithFormat:@"%.1f bytes",(float)str.length / (float)2];
     }
     if (self.selectedButton.tag == DB_SCALE_BIN) {
-        self.lenTextField.stringValue = [NSString stringWithFormat:@"%lu bytes",str.length / 8];
+        self.lenTextField.stringValue = [NSString stringWithFormat:@"%.1f bytes",(float)str.length / (float)8];
     }
     if (self.isExtend)
     {
