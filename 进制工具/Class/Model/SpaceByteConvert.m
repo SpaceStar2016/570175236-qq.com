@@ -90,8 +90,26 @@
 +(void)test
 {
 //    NSData * data = [NSData da]
-    NSString * str = [self hexStrFromBinStr:@"0x0000111101011111111111111100101011011010101001"];
-    NSLog(@"----%@",str);
+//    NSString * str = [self hexStrFromBinStr:@"0x0000111101011111111111111100101011011010101001"];
+//    NSLog(@"----%@",str);
+//    NSString * str = @"abc";
+//    int longStr =  str.longLongValue;
+//
+//
+//    NSString * ss = [self decisStrFromHexStr:str];
+     NSLog(@"---");
+    unsigned int he = 0xff;
+    long long re=0;   // 保存转换为10进制的结果
+    int k=16;   // 16进制
+    int n=1;    // 位权
+//    scanf("%d", &he);  // 接收用户输入的16进制数，不含0x前缀
+    while(he != 0)
+    {
+        re += (he%10)*n;  // 取出各位位码值，并乘以对应的位权值
+        he /= 10;   // 去掉16进制数的最低位，次低位变为最低位
+        n *= k;     // 位权乘以16
+    }
+    printf("ll%d",re); // 输出转换后的结果
 
 }
 +(NSString *)decisStrFromHexStr:(NSString *)hex
@@ -102,6 +120,7 @@
     if ([hex containsString:@"0X"]) {
         [hex stringByReplacingOccurrencesOfString:@"0X" withString:@"#"];
     }
+    long long longStrValue = 0;
     NSMutableString * mString = [NSMutableString string];
     for (int i = 0; i < hex.length; i++) {
         NSString * target = [NSString stringWithFormat:@"#%@",[hex substringWithRange:NSMakeRange(i, 1)]];
@@ -109,10 +128,12 @@
         NSScanner *scanner = [NSScanner scannerWithString:target];
         [scanner setScanLocation:1];
         [scanner scanHexInt:&value];
-        NSString *intStr=[NSString stringWithFormat:@"%d",value];
-        [mString appendString:intStr];
+        longStrValue += value;
+//        NSString *intStr=[NSString stringWithFormat:@"%d",value];
+//        [mString appendString:intStr];
     }
-    return mString;
+    NSString * end = [NSString stringWithFormat:@"%lld",longStrValue];
+    return end;
 }
 
 ///十进制转十六进制
