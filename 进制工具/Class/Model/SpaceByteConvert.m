@@ -35,23 +35,42 @@
     return hexData;
 }
 
-//16进制字符转二进制字符
-+(NSString *)binStrFromHexStr:(NSString *)string{
+
+
++(NSString *)binStrFromHexStr:(NSString *)str{
     
-    long a = strtoul(string.UTF8String, NULL, 16);
-    NSMutableString *binary = [[NSMutableString alloc] init];
-    while (a/2 !=0) {
-        [binary insertString:[NSString stringWithFormat:@"%ld",a%2] atIndex:0];
-        a = a/2;
+    //16进制字符转二进制字符
+    NSString *totalBinaryStr = @"";
+    for (int i = 0;i < str.length;i++){
+        NSString *subStr = [str substringWithRange:NSMakeRange(i, 1)];
+        NSInteger subNumber = [self stringWithHexChar:subStr];
+
+        NSInteger multiple = 8;
+        NSString *binaryStr = @"";
+        for (int i = 4; i > 0; i--) {
+            binaryStr = [binaryStr stringByAppendingString:((subNumber / multiple > 0)? @"1" : @"0")];
+            subNumber = (subNumber >= multiple)?subNumber - multiple:subNumber;
+            multiple /= 2;
+        }
+        totalBinaryStr = [totalBinaryStr stringByAppendingString:binaryStr];
     }
+//    NSString *reverseStr = [self reverseStringWith:totalBinaryStr];
+    return totalBinaryStr;
     
-    [binary insertString:[NSString stringWithFormat:@"%ld",a%2] atIndex:0];
-    
-    //不够4位的高位补0
-    while (binary.length%4 !=0) {
-        [binary insertString:@"0" atIndex:0];
-    }
-    return binary;
+//    long a = strtoul(string.UTF8String, NULL, 16);
+//    NSMutableString *binary = [[NSMutableString alloc] init];
+//    while (a/2 !=0) {
+//        [binary insertString:[NSString stringWithFormat:@"%ld",a%2] atIndex:0];
+//        a = a/2;
+//    }
+//
+//    [binary insertString:[NSString stringWithFormat:@"%ld",a%2] atIndex:0];
+//
+//    //不够4位的高位补0
+//    while (binary.length%4 !=0) {
+//        [binary insertString:@"0" atIndex:0];
+//    }
+//    return binary;
 }
 
 +(NSString *)hexStrFromBinStr:(NSString *)binary
@@ -139,5 +158,21 @@
 //    NSString * deciStr = [self decisStrFromHexStr:hexStr];
 //    return deciStr;
 //}
+
++ (NSInteger)stringWithHexChar:(NSString*)hexStr{
+    const char *hexChar = [hexStr cStringUsingEncoding:NSUTF8StringEncoding];
+    int hexNumber;
+    sscanf(hexChar, "%x", &hexNumber);
+    return hexNumber;
+}
+
++(NSString*)reverseStringWith:(NSString*)str{
+    NSString *reverStr = @"";
+    for (int i = 0; i < str.length; i++) {
+    reverStr = [reverStr stringByAppendingString:[str substringWithRange:NSMakeRange(str.length - i - 1, 1)]];
+    }
+    return reverStr;
+}
+
 
 @end

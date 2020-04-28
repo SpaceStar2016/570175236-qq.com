@@ -52,6 +52,9 @@ static int separateCount = 1;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+
+    
     [SpaceByteConvert test];
     self.dbViewModel = [DBViewModel viewModel];
     [self.dbViewModel addDelegates:@[self]];
@@ -178,7 +181,9 @@ static int separateCount = 1;
 -(void)textFieldDidChange:(NSNotification *)nofi
 {
     NSTextField * textField = nofi.object;
-    [self genDataWithText:textField.stringValue];
+    //去掉Xcode打印台的空格
+    NSString * newText  = [textField.stringValue stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [self genDataWithText:newText];
 }
 
 #pragma mark NSCollectionViewDelegate
